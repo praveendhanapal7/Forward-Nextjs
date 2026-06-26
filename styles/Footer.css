@@ -1,0 +1,99 @@
+.FooterSection {
+  background: #111111;
+  color: #f3f3f3;
+  padding: 56px 50px 24px;
+}
+
+.FooterTop {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 28px;
+}
+
+.FooterBrand h3,
+.FooterLinks h4,
+.FooterContact h4 {
+  margin: 0 0 14px;
+}
+
+.FooterBrand h3 {
+  font-size: 24px;
+  letter-spacing: 0.04em;
+}
+
+.FooterBrand p {
+  margin: 0;
+  color: #c9c9c9;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.FooterContactItem {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #c9c9c9;
+  font-size: 15px;
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+
+.FooterContactItem:last-child {
+  margin-bottom: 0;
+}
+
+.FooterContactItem svg {
+  flex-shrink: 0;
+  color: #e87070;
+}
+
+.FooterLinks ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.FooterLinks a {
+  text-decoration: none;
+  color: #c9c9c9;
+  font-size: 15px;
+}
+
+.FooterLinks a:hover {
+  color: #ffffff;
+}
+
+.FooterBottom {
+  border-top: 1px solid #2a2a2a;
+  margin-top: 34px;
+  padding-top: 18px;
+}
+
+.FooterBottom p {
+  margin: 0;
+  font-size: 14px;
+  color: #9d9d9d;
+}
+
+@media (max-width: 1024px) {
+  .FooterSection {
+    padding: 48px 28px 22px;
+  }
+
+  .FooterTop {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .FooterSection {
+    padding: 42px 20px 20px;
+  }
+
+  .FooterTop {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}

@@ -1,0 +1,130 @@
+/* ── Dashboard Shell ─────────────────────────────────────── */
+.DashShell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f5f6fa;
+}
+
+/* ── Top Bar ─────────────────────────────────────────────── */
+.DashTopBar {
+  height: 60px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  flex-shrink: 0;
+}
+
+.DashTopBarTitle {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.DashTopBarRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.DashTopBarMeta {
+  font-size: 12px;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.DashTopBarRefreshBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.DashTopBarRefreshBtn:hover:not(:disabled) {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.DashTopBarRefreshBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@keyframes dash-spin {
+  to { transform: rotate(360deg); }
+}
+
+.DashTopBarRefreshBtnSpinning svg {
+  animation: dash-spin 0.8s linear infinite;
+}
+
+.DashTopBarUser {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.DashTopBarSignOutBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #fca5a5;
+  background: #fff5f5;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.DashTopBarSignOutBtn:hover {
+  background: #fee2e2;
+  border-color: #f87171;
+}
+
+/* ── Main content ────────────────────────────────────────── */
+.DashContent {
+  flex: 1;
+  overflow-x: hidden;
+}
+
+.DashShell > section.PageShell {
+  flex: 1;
+  background: transparent;
+}
+
+/* ── Mobile responsive ───────────────────────────────────── */
+@media (max-width: 640px) {
+  .DashTopBar {
+    padding: 0 16px;
+    gap: 8px;
+  }
+
+  .DashTopBarMeta {
+    display: none;
+  }
+
+  .DashTopBarUser {
+    display: none;
+  }
+}

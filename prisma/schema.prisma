@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  email       String        @id
+  name        String?       @map("full_name")
+  phoneNumber String?       @map("phone_number")
+  location    String?
+  accountType String?       @map("account_type")
+  brandName   String?       @map("brand_name")
+  password    String
+  secretKey   String        @map("secret_key")
+  sessions    UserSession[]
+
+  @@map("users")
+}
+
+model Lead {
+  id           Int     @id @default(autoincrement())
+  addedBy      String? @map("added_by")
+  clientName   String? @map("client_name")
+  enquiryEntry String? @map("enquiry_entry")
+  phoneNumber  String? @map("phone_number")
+  requirements String?
+  status       String?
+  link         String?
+  notes        String?
+  log          String? @db.Text
+
+  @@map("leads")
+}
+
+model AccessModel {
+  secretKeyHash String  @id @map("secret_key_hash")
+  brandName     String? @map("brand_name")
+
+  @@map("access_model")
+}
+
+model UserSession {
+  token     String   @id @db.VarChar(64)
+  userEmail String   @map("user_email")
+  createdAt DateTime @map("created_at")
+  expiresAt DateTime @map("expires_at")
+  user      User     @relation(fields: [userEmail], references: [email])
+
+  @@map("user_sessions")
+}

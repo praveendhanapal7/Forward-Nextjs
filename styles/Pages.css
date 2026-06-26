@@ -1,0 +1,1182 @@
+.PageShell {
+  padding: 56px 50px 72px;
+  background: #ffffff;
+}
+
+.PageHero {
+  border: 1px solid #f0dede;
+  border-radius: 16px;
+  padding: 30px;
+  background: linear-gradient(135deg, #fff7f7 0%, #ffffff 55%, #fff3f3 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.PageTag {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ce050d;
+}
+
+.PageTitle {
+  margin: 0;
+  font-size: 44px;
+  line-height: 1.1;
+}
+
+.PageLead {
+  margin: 14px 0 0;
+  max-width: 840px;
+  font-size: 18px;
+  line-height: 1.65;
+  color: #333333;
+}
+
+.PageSection {
+  margin-top: 30px;
+}
+
+.PageSectionTitle {
+  margin: 0 0 14px;
+  font-size: 30px;
+}
+
+.LeadEntriesHeader {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.LeadFiltersRow {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.LeadFilterWrap {
+  display: grid;
+  gap: 6px;
+  min-width: 220px;
+}
+
+.LeadFilterWrap label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.LeadFilterLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.LeadFilterLabel svg {
+  font-size: 15px;
+  color: #ce050d;
+}
+
+.LeadFilterWrap select {
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid #dbc9c9;
+  padding: 0 36px 0 12px;
+  font-size: 14px;
+  background: #fff;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7280' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+
+.LeadFilterWrap select:focus {
+  outline: none;
+  border-color: #ce050d;
+}
+
+.LeadDateRangeWrap {
+  min-width: 300px;
+}
+
+.LeadDateRangeInputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.LeadDateRangeInputs input {
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid #dbc9c9;
+  padding: 0 12px;
+  font-size: 14px;
+  background: #fff;
+}
+
+.LeadDateRangeInputs input:focus {
+  outline: none;
+  border-color: #ce050d;
+}
+
+.NarrativeBlock {
+  display: grid;
+  gap: 12px;
+}
+
+.NarrativeBlock p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #3e3e3e;
+}
+
+.PageGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.PageGrid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.InfoCard {
+  border: 1px solid #eadcdc;
+  border-radius: 12px;
+  padding: 18px;
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.InfoCard:hover {
+  border-color: #ce050d;
+  box-shadow: 0 10px 20px rgba(206, 5, 13, 0.1);
+}
+
+.InfoCard h3 {
+  margin: 0 0 8px;
+  font-size: 21px;
+}
+
+.InfoCard p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #494949;
+}
+
+.IconTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.CardIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #ce050d;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.HighlightCard {
+  background: linear-gradient(140deg, #fff7f7 0%, #ffffff 100%);
+}
+
+.FeatureList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.FeatureList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  color: #3e3e3e;
+  line-height: 1.6;
+}
+
+.FeatureList li svg {
+  color: #ce050d;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.StatStrip {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.StatBox {
+  border: 1px solid #e8d8d8;
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px 12px;
+  text-align: center;
+}
+
+.StatBox h4 {
+  margin: 0;
+  font-size: 24px;
+  color: #ce050d;
+}
+
+.StatBox p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #555;
+}
+
+.InlineList {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.InlineList li {
+  border: 1px solid #e5d4d4;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 13px;
+  background: #fff;
+}
+
+.BlogCard .Meta {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #ce050d;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.BlogCard h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.BlogCard a {
+  display: inline-block;
+  margin-top: 12px;
+  color: #ce050d;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.SignInWrap {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 18px;
+}
+
+.DetailsLayout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.2fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.DetailsLeft {
+  position: sticky;
+  top: 112px;
+}
+
+.DetailsRight {
+  width: 100%;
+}
+
+.SignInForm {
+  border: 1px solid #eadcdc;
+  border-radius: 12px;
+  padding: 18px;
+  background: #fff;
+}
+
+.Field {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.Field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+}
+
+.DashboardTopGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(460px, 1.08fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.DashboardFormCard {
+  max-width: none;
+}
+
+.StatusGraphCard {
+  min-height: 100%;
+  background: linear-gradient(180deg, #fffafa 0%, #ffffff 100%);
+  padding: 28px 30px 26px;
+}
+
+.StatusGraphHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.StatusGraphHead h3 {
+  margin: 2px 0 0;
+}
+
+.StatusGraphTotal {
+  min-width: 126px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff 0%, #fff7f7 100%);
+  border: 1px solid #f0dede;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(206, 5, 13, 0.08);
+}
+
+.StatusGraphTotal span {
+  display: block;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1;
+  color: #ce050d;
+}
+
+.StatusGraphTotal small {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  color: #666;
+}
+
+.StatusGraphList {
+  display: grid;
+  gap: 14px;
+}
+
+.StatusGraphRow {
+  display: grid;
+  gap: 7px;
+}
+
+.StatusGraphLabelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.StatusGraphLabelWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.StatusGraphDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.StatusGraphLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2f2f2f;
+}
+
+.StatusGraphCount {
+  font-size: 13px;
+  font-weight: 700;
+  color: #555;
+}
+
+.StatusGraphTrack {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: #f2e6e6;
+  overflow: hidden;
+}
+
+.StatusGraphFill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.Field input,
+.Field select,
+.Field textarea {
+  border-radius: 10px;
+  border: 1px solid #dbc9c9;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.Field input,
+.Field select {
+  height: 44px;
+  padding: 0 12px;
+}
+
+.Field select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7280' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+
+.Field textarea {
+  padding: 10px 12px;
+  resize: vertical;
+  width: 100%;
+}
+
+.Field input:focus,
+.Field select:focus,
+.Field textarea:focus {
+  outline: none;
+  border-color: #ce050d;
+}
+
+.Field input[aria-invalid="true"],
+.Field select[aria-invalid="true"],
+.Field textarea[aria-invalid="true"] {
+  border-color: #dc2626;
+}
+
+/* Contact detail rows with icons */
+.ContactDetail {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 8px;
+  font-size: 15px;
+  color: #494949;
+  line-height: 1.5;
+}
+
+.ContactDetail svg {
+  color: #ce050d;
+  flex-shrink: 0;
+}
+
+.PrimaryBtn {
+  height: 40px;
+  width: 100%;
+  border: 1px solid #ce050d;
+  border-radius: 10px;
+  background: #ce050d;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 4px;
+}
+
+.PrimaryBtn:hover {
+  background: #b6020a;
+}
+
+.MutedText {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+}
+
+.MutedText a {
+  color: #ce050d;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.MutedText a:hover {
+  text-decoration: underline;
+}
+
+.FormAlert {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+  border: 1px solid transparent;
+}
+
+.FormAlert--error {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fca5a5;
+}
+
+.FormAlert--success {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #86efac;
+}
+
+.FieldHint {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.FieldError {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0.3rem;
+  margin: 0;
+  font-size: 11px;
+  color: #b91c1c;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+/* Password field hint slot — reserves height for strength bar + error */
+.FieldHintSlot {
+  min-height: 20px;
+}
+
+.FieldHintSlot .FieldError {
+  position: static;
+  margin: 2px 0 0 0.3rem;
+  font-size: 11px;
+  white-space: normal;
+}
+
+.PasswordStrength {
+  margin: 6px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.PasswordStrengthBar {
+  flex: 1;
+  height: 4px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.PasswordStrengthFill {
+  display: block;
+  height: 100%;
+  transition:
+    width 150ms ease,
+    background-color 150ms ease;
+}
+
+.HeaderUserGreeting {
+  font-size: 14px;
+  color: #374151;
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .PageShell {
+    padding: 46px 28px 62px;
+  }
+
+  .PageTitle {
+    font-size: 36px;
+  }
+
+  .PageGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .StatStrip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .DetailsLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .DashboardTopGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .DetailsLeft {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .PageShell {
+    padding: 40px 20px 52px;
+  }
+
+  .PageHero {
+    padding: 20px 16px;
+  }
+
+  .PageTitle {
+    font-size: 30px;
+  }
+
+  .PageLead {
+    font-size: 16px;
+  }
+
+  .PageSectionTitle {
+    font-size: 24px;
+  }
+
+  .PageGrid,
+  .PageGrid2,
+  .StatStrip {
+    grid-template-columns: 1fr;
+  }
+}
+
+.LeadTableWrap {
+  overflow-x: auto;
+}
+
+.LeadTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 960px;
+}
+
+.LeadTable th,
+.LeadTable td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #f0dfdf;
+  font-size: 14px;
+}
+
+.LeadTable th {
+  color: #ce050d;
+  font-weight: 700;
+}
+
+.StatusGraphCard {
+  min-height: 100%;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(206, 5, 13, 0.08),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #fffafa 0%, #ffffff 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 30px 26px;
+  border: 1px solid rgba(206, 5, 13, 0.18);
+  box-shadow:
+    0 18px 44px rgba(206, 5, 13, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+}
+
+.StatusDonutWrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 440px;
+  padding: 18px 18px 8px;
+}
+
+.StatusDonutSvg {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  overflow: visible;
+  filter: drop-shadow(0 16px 34px rgba(64, 92, 136, 0.14));
+}
+
+.StatusDonutConnector {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.92;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+}
+
+.StatusDonutLabel {
+  font-size: 18px;
+  font-weight: 700;
+  fill: #222222;
+  paint-order: stroke;
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.StatusDonutMeta {
+  font-size: 14px;
+  font-weight: 500;
+  fill: #6b7280;
+  paint-order: stroke;
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+.StatusDonutCenterValue {
+  font-size: 52px;
+  font-weight: 700;
+  fill: #ce050d;
+  text-anchor: middle;
+  filter: drop-shadow(0 0 10px rgba(206, 5, 13, 0.16));
+}
+
+.StatusDonutCenterLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: #6b7280;
+  text-anchor: middle;
+}
+
+.StatusGraphEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6b7280;
+  padding: 12px;
+}
+
+/* === Mobile: 768px tablet gap fill === */
+@media (max-width: 768px) {
+  .PageShell {
+    padding: 36px 18px 48px;
+  }
+
+  .PageTitle {
+    font-size: 32px;
+  }
+
+  .LeadEntriesHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .LeadFilterWrap {
+    min-width: 100%;
+  }
+
+  .SignInWrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Dashboard chart and table responsive === */
+.DonutChartScroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.LeadTableScrollWrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Recharts status chart ───────────────────────────────── */
+.StatusChartWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.StatusChartHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.StatusChartToggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f3f4f6;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.StatusChartToggleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+  font-family: inherit;
+}
+
+.StatusChartToggleBtn:hover {
+  color: #111827;
+}
+
+.StatusChartToggleBtnActive {
+  background: #ffffff;
+  color: #111827;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.StatusChartTotal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(180deg, #fff 0%, #fff7f7 100%);
+  border: 1px solid #f0dede;
+  border-radius: 12px;
+  padding: 10px 18px;
+  min-width: 90px;
+  box-shadow: 0 4px 12px rgba(206, 5, 13, 0.06);
+}
+
+.StatusChartTotalNum {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ce050d;
+  line-height: 1;
+}
+
+.StatusChartTotalLabel {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 3px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.StatusChartBody {
+  min-height: 240px;
+}
+
+.ChartTooltip {
+  background: #1f2937;
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #f9fafb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.ChartTooltipDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ChartTooltipLabel {
+  font-weight: 500;
+}
+
+.ChartTooltipCount {
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.ChartLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 12px;
+  justify-content: center;
+}
+
+.ChartLegendItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.ChartLegendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ChartLegendLabel {
+  font-weight: 500;
+}
+
+.ChartLegendCount {
+  color: #9ca3af;
+}
+
+/* ── Lead table sortable headers ────────────────────────── */
+.LeadTableSortBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: #ce050d;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+.LeadTableSortBtn:hover {
+  opacity: 0.8;
+}
+
+/* ── Mobile lead cards ──────────────────────────────────── */
+.LeadCardList {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.LeadCard {
+  border: 1px solid #eadcdc;
+  border-radius: 12px;
+  padding: 14px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.LeadCardRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.LeadCardPhone {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.LeadCardReq {
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.45;
+}
+
+.LeadCardMeta {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.LeadCardActions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.LeadCardNotes {
+  width: 100%;
+  min-height: 52px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.LeadCardLog {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+/* ── Password eye toggle ────────────────────────────────── */
+.FieldPasswordWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.FieldPasswordWrap input {
+  width: 100%;
+  padding-right: 42px;
+}
+
+.FieldPasswordToggle {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.FieldPasswordToggle:hover {
+  color: #374151;
+}
+
+@media (max-width: 640px) {
+  .LeadTableScrollWrap {
+    display: none;
+  }
+
+  .LeadCardList {
+    display: flex;
+  }
+}
+
+/* ── Status select pill wrapper ─────────────────────────── */
+.StatusSelectWrap {
+  position: relative;
+  display: inline-block;
+}
+
+.StatusSelectWrap select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 28px !important;
+  border-radius: 10px;
+  font-family: inherit;
+}
+
+.StatusSelectWrap::after {
+  content: "";
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+/* ── Show All / filter action buttons ───────────────────── */
+.ShowAllBtn {
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid #dbc9c9;
+  background: #fff;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
+}
+
+.ShowAllBtn:hover {
+  border-color: #ce050d;
+  color: #ce050d;
+  background: #fff5f5;
+}
+
+/* ── Lead delete button ─────────────────────────────────── */
+.LeadDeleteBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid #fca5a5;
+  background: #fff5f5;
+  color: #dc2626;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.LeadDeleteBtn:hover:not(:disabled) {
+  background: #fee2e2;
+  border-color: #f87171;
+}
+
+.LeadDeleteBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

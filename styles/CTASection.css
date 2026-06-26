@@ -1,0 +1,129 @@
+.CTASection {
+  padding: 0 50px 84px;
+  background: #ffffff;
+}
+
+.CTAInner {
+  border-radius: 18px;
+  border: 1px solid #f0d8d8;
+  padding: 44px;
+  background: linear-gradient(135deg, #fff9f9 0%, #ffffff 55%, #fff1f1 100%);
+  box-shadow: 0 16px 34px rgba(80, 20, 20, 0.08);
+  text-align: center;
+}
+
+.CTATag {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ce050d;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.CTATitle {
+  margin: 12px auto 14px;
+  font-size: 42px;
+  line-height: 1.12;
+  max-width: 780px;
+}
+
+.CTADescription {
+  margin: 0 auto;
+  max-width: 760px;
+  color: #3b3b3b;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.CTAButtons {
+  margin-top: 28px;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.CTAButton {
+  min-width: 210px;
+  height: 52px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0 24px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.CTAButton:hover {
+  transform: translateY(-2px);
+}
+
+.CTAButtonPrimary {
+  border: 1px solid #ce050d;
+  background: #ce050d;
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(206, 5, 13, 0.2);
+}
+
+.CTAButtonPrimary:hover {
+  background: #b8030a;
+  border-color: #b8030a;
+}
+
+.CTAButtonSecondary {
+  border: 2px solid #ce050d;
+  background: #fff;
+  color: #ce050d;
+}
+
+.CTAButtonSecondary:hover {
+  background: #ce050d;
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .CTASection {
+    padding: 0 28px 66px;
+  }
+
+  .CTAInner {
+    padding: 34px 24px;
+  }
+
+  .CTATitle {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 640px) {
+  .CTASection {
+    padding: 0 20px 52px;
+  }
+
+  .CTAInner {
+    border-radius: 14px;
+    padding: 28px 16px;
+  }
+
+  .CTATitle {
+    font-size: 28px;
+  }
+
+  .CTADescription {
+    font-size: 16px;
+  }
+
+  .CTAButtons {
+    flex-direction: column;
+  }
+
+  .CTAButton {
+    width: 100%;
+    min-width: 0;
+  }
+}

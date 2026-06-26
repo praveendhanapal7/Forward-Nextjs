@@ -1,0 +1,326 @@
+.HeroBanner {
+  min-height: 78vh;
+  background-image: var(--hero-bg);
+  background-size: cover;
+  background-position: right center;
+  display: flex;
+  align-items: center;
+  padding: 40px 50px 56px;
+  /* border-bottom: 1px solid #f1dada; */
+  gap: 50px;
+}
+
+.HeroContent {
+  max-width: 680px;
+}
+
+.HeroEyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #ce050d;
+  margin-bottom: 16px;
+}
+
+.HeroTitle {
+  font-size: 72px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.HeroTitle span {
+  color: #ce050d;
+}
+
+.HeroDescription {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #242424;
+  max-width: 620px;
+  margin-top: 24px;
+}
+
+.HeroActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.HeroBtn {
+  height: 52px;
+  min-width: 160px;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.HeroBtn:hover {
+  transform: none;
+}
+
+.HeroBtnPrimary {
+  border: 1px solid #ce050d;
+  background: #ce050d;
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(206, 5, 13, 0.22);
+}
+
+.HeroBtnPrimary::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #ffffff;
+  z-index: -1;
+  transition: width 0.3s ease;
+
+}
+
+.HeroBtnPrimary:hover::after {
+  width: 100%;
+}
+
+.HeroBtnPrimary:hover {
+  color: #ce050d;
+}
+
+.HeroBtnSecondary {
+  border: 1px solid #000000;
+  background: #ffffff;
+  color: #000000;
+}
+
+.HeroBtnSecondary::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #000000;
+  z-index: -1;
+  transition: width 0.3s ease;
+}
+
+.HeroBtnSecondary:hover::after {
+  width: 100%;
+}
+
+.HeroBtnSecondary:hover {
+  color: #ffffff;
+}
+
+.AfterHeroSection {
+  padding: 72px 50px;
+  background: linear-gradient(180deg, #ffffff 0%, #fff6f6 100%);
+}
+
+.SectionTag {
+  color: #ce050d;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.SectionTitle {
+  font-size: 44px;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.SectionSubtitle {
+  font-size: 18px;
+  color: #2a2a2a;
+  margin-bottom: 34px;
+  max-width: 760px;
+}
+
+.ServiceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.ServiceCard {
+  background: #ffffff;
+  border: 2px solid #e9e9e9;
+  border-radius: 12px;
+  padding: 22px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: 0.25s ease;
+}
+
+.ServiceCard:hover {
+  border-color: #ce050d;
+  box-shadow: 0 10px 24px rgba(206, 5, 13, 0.16);
+  transform: translateY(-4px);
+}
+
+.ServiceHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ServiceIconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #ce050d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ServiceIcon {
+  color: #fff;
+  font-size: 20px;
+}
+
+.ServiceCard h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.ServiceDescription {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  .HeroTitle {
+    font-size: 62px;
+  }
+
+  .HeroDescription {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .HeroBanner {
+    min-height: 72vh;
+    padding: 32px 28px 46px;
+    background-position: 72% center;
+  }
+
+  .HeroTitle {
+    font-size: 52px;
+  }
+
+  .ServiceGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .SectionTitle {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .HeroBanner {
+    min-height: auto;
+    padding: 36px 20px 42px;
+    background-image: none !important;
+    background-color: #fff3f3;
+  }
+
+  .HeroTitle {
+    font-size: 42px;
+  }
+
+  .HeroDescription {
+    font-size: 17px;
+    margin-top: 18px;
+  }
+
+  .HeroActions {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .HeroBtn {
+    flex: 0 0 auto;
+    min-width: 150px;
+    height: 48px;
+  }
+
+  .AfterHeroSection {
+    padding: 56px 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .HeroTitle {
+    font-size: 26px;
+    line-height: 1.1;
+  }
+
+  .HeroEyebrow {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .HeroDescription {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .HeroActions {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .HeroBtn {
+    width: auto;
+    min-width: 120px;
+    height: 46px;
+    font-size: 12px;
+  }
+
+  .SectionTitle {
+    font-size: 30px;
+  }
+
+  .SectionSubtitle {
+    font-size: 17px;
+  }
+
+  .ServiceGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ServiceCard h3 {
+    font-size: 18px;
+  }
+}
+
+
+.HeroBtnLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
