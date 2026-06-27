@@ -1,7 +1,8 @@
 .HeroBanner {
   min-height: 78vh;
   background-image: var(--hero-bg);
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: right center;
   display: flex;
   align-items: center;
@@ -48,6 +49,10 @@
   margin-top: 30px;
 }
 
+.HeroTitleSpanMobile {
+  display: none;
+}
+
 .HeroBtn {
   height: 52px;
   min-width: 160px;
@@ -59,7 +64,9 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
-  transition: color 0.25s ease, border-color 0.25s ease;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .HeroBtn:hover {
@@ -83,7 +90,6 @@
   background-color: #ffffff;
   z-index: -1;
   transition: width 0.3s ease;
-
 }
 
 .HeroBtnPrimary:hover::after {
@@ -215,6 +221,7 @@
 
   .HeroDescription {
     font-size: 18px;
+    max-width: 70%;
   }
 }
 
@@ -242,7 +249,6 @@
   .HeroBanner {
     min-height: auto;
     padding: 36px 20px 42px;
-    background-image: none !important;
     background-color: #fff3f3;
   }
 
@@ -253,6 +259,15 @@
   .HeroDescription {
     font-size: 17px;
     margin-top: 18px;
+    max-width: 60%;
+  }
+
+  .HeroTitleSpan {
+    display: none;
+  }
+
+  .HeroTitleSpanMobile {
+    display: block;
   }
 
   .HeroActions {
@@ -274,7 +289,7 @@
 
 @media (max-width: 640px) {
   .HeroTitle {
-    font-size: 26px;
+    font-size: 34px;
     line-height: 1.1;
   }
 
@@ -286,6 +301,7 @@
   .HeroDescription {
     font-size: 12px;
     line-height: 1.55;
+    max-width: 40%;
   }
 
   .HeroActions {
@@ -295,9 +311,9 @@
 
   .HeroBtn {
     width: auto;
-    min-width: 120px;
-    height: 46px;
-    font-size: 12px;
+    min-width: 90px;
+    height: 41px;
+    font-size: 10px;
   }
 
   .SectionTitle {
@@ -316,7 +332,6 @@
     font-size: 18px;
   }
 }
-
 
 .HeroBtnLink {
   display: inline-flex;

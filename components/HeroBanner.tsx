@@ -19,17 +19,28 @@ export default function HeroBanner() {
           <br />
           With Smart
           <br />
-          <span>Digital Marketing</span>
+          <span className="HeroTitleSpan">Digital Marketing</span>
+          <span className="HeroTitleSpanMobile">
+            Digital
+            <br />
+            Marketing
+          </span>
         </h1>
         <p className="HeroDescription">
           We help businesses scale with performance-driven strategy, creative
           campaigns, and strong brand positioning.
         </p>
         <div className="HeroActions">
-          <Link href="/get-started" className="HeroBtn HeroBtnPrimary HeroBtnLink">
+          <Link
+            href="/get-started"
+            className="HeroBtn HeroBtnPrimary HeroBtnLink"
+          >
             Get Started
           </Link>
-          <Link href="/services" className="HeroBtn HeroBtnSecondary HeroBtnLink">
+          <Link
+            href="/services"
+            className="HeroBtn HeroBtnSecondary HeroBtnLink"
+          >
             View Services
           </Link>
         </div>

@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 import "@/styles/Footer.css";
+import Image from "next/image";
 
 export default function Footer() {
   return (
     <footer className="FooterSection">
+      <h1 className="FooterTitle">FORWARD</h1>
+
       <div className="FooterTop">
         <div className="FooterBrand">
           <h3>FORWARD AGENCY</h3>
@@ -17,10 +20,18 @@ export default function Footer() {
         <div className="FooterLinks">
           <h4>Quick Links</h4>
           <ul>
-            <li><Link href="/services">Services</Link></li>
-            <li><Link href="/about">About</Link></li>
-            <li><Link href="/blog">Blog</Link></li>
-            <li><Link href="/signin">Sign In</Link></li>
+            <li>
+              <Link href="/services">Services</Link>
+            </li>
+            <li>
+              <Link href="/about">About</Link>
+            </li>
+            <li>
+              <Link href="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link href="/signin">Sign In</Link>
+            </li>
           </ul>
         </div>
 

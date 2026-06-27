@@ -1,7 +1,16 @@
 .FooterSection {
   background: #111111;
   color: #f3f3f3;
-  padding: 56px 50px 24px;
+  padding: 8px 50px 24px;
+}
+
+.FooterTitle {
+  font-size: 16dvw;
+  letter-spacing: 0.04em;
+  margin: 0rem 0 1rem;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.12);
 }
 
 .FooterTop {
@@ -79,7 +88,7 @@
 
 @media (max-width: 1024px) {
   .FooterSection {
-    padding: 48px 28px 22px;
+    padding: 8px 28px 22px;
   }
 
   .FooterTop {
@@ -89,7 +98,7 @@
 
 @media (max-width: 640px) {
   .FooterSection {
-    padding: 42px 20px 20px;
+    padding: 8px 22px 18px;
   }
 
   .FooterTop {
