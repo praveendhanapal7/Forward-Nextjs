@@ -4,14 +4,16 @@ import { prisma } from "@/lib/prisma";
 export async function GET() {
   try {
     const user = await resolveUser();
-    if (!user) return Response.json({ message: "Unauthorized" }, { status: 401 });
-    if (!isAgency(user)) return Response.json({ message: "Forbidden" }, { status: 403 });
+    if (!user)
+      return Response.json({ message: "Unauthorized" }, { status: 401 });
+    if (!isAgency(user))
+      return Response.json({ message: "Forbidden" }, { status: 403 });
 
     const models = await prisma.accessModel.findMany({
       select: { brandName: true },
     });
     const brands = models
-      .map((m) => m.brandName)
+      .map((m: any) => m.brandName)
       .filter((b): b is string => Boolean(b));
 
     return Response.json(brands);
