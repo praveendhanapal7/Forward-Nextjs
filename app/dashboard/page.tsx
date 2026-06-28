@@ -564,10 +564,23 @@ export default function DashboardPage() {
       />
 
       <section className="PageShell">
-        <div style={{ display: "flex", flexDirection: "row" ,flex: 1, gap:'1rem'}}>
-         
-         <div style={{ display: "flex", flexDirection: "column", flex: 1 , gap:'1rem'}}>
-
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flex: 1,
+            gap: "1rem",
+            flexWrap: "wrap",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              gap: "1rem",
+            }}
+          >
             <div className="PageHero">
               <p className="PageTag">Dashboard</p>
               <h2 style={{ fontWeight: 400, marginTop: 10, marginBottom: 10 }}>
@@ -579,13 +592,15 @@ export default function DashboardPage() {
                   </span>
                 )}
               </h2>
-              <h3 className="PageTitle" style={{fontSize:'38px'}}>Lead Management Portal</h3>
+              <h3 className="PageTitle" style={{ fontSize: "38px" }}>
+                Lead Management Portal
+              </h3>
               <p className="PageLead">
                 {user?.name}, add lead entries and track requirements below.
               </p>
             </div>
 
-            <div className="PageSection" style={{flex:1}}>
+            <div className="PageSection" style={{ flex: 1 }}>
               <h2 className="PageSectionTitle">Add Lead Requirement</h2>
               <div className="DashboardTopGrid">
                 <form
@@ -668,7 +683,7 @@ export default function DashboardPage() {
 
           <article
             className="InfoCard StatusGraphCard"
-            style={{ display: "flex", flexDirection: "column", flex:1 }}
+            style={{ display: "flex", flexDirection: "column", flex: 1 }}
           >
             <div className="StatusGraphHead">
               <div>
