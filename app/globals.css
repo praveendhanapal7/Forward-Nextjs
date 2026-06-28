@@ -23,6 +23,9 @@ body {
 
 main {
   flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
@@ -32,10 +35,13 @@ a {
 
 /* Loading spinner */
 .PageSpinner {
-  display: flex;
+  display: flex; 
+   flex: 1;
   align-items: center;
   justify-content: center;
-  min-height: 40vh;
+  flex-grow: 1;
+  min-height: 100%;
+
 }
 
 .Spinner {
@@ -45,8 +51,11 @@ a {
   border-top-color: #ce050d;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
+  align-self: center;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }

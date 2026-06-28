@@ -37,6 +37,7 @@
 
 .PageSection {
   margin-top: 30px;
+  width: 100%;
 }
 
 .PageSectionTitle {
@@ -158,7 +159,9 @@
   padding: 18px;
   background: #fff;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .InfoCard:hover {
@@ -212,7 +215,7 @@
 
 .FeatureList li {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
   font-size: 15px;
   color: #3e3e3e;
@@ -336,10 +339,11 @@
 }
 
 .DashboardTopGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(460px, 1.08fr);
+  display: flex;
+  flex-direction: column;
   gap: 22px;
-  align-items: start;
+  /* align-items: start; */
+  flex: 1;
 }
 
 .DashboardFormCard {
@@ -582,9 +586,9 @@
   white-space: nowrap;
 }
 
-/* Password field hint slot — reserves height for strength bar + error */
+/* Password field hint slot — reserves minimal space for error */
 .FieldHintSlot {
-  min-height: 20px;
+  min-height: 4px;
 }
 
 .FieldHintSlot .FieldError {
@@ -595,7 +599,6 @@
 }
 
 .PasswordStrength {
-  margin: 6px 0 0;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -705,6 +708,7 @@
 .LeadTable th {
   color: #ce050d;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .StatusGraphCard {
@@ -918,6 +922,11 @@
 
 .StatusChartBody {
   min-height: 240px;
+  transition: filter 0.2s ease;
+}
+
+.StatusChartWrap:hover .StatusChartBody {
+  filter: drop-shadow(0 4px 12px rgba(206, 5, 13, 0.08));
 }
 
 .ChartTooltip {
@@ -1057,13 +1066,14 @@
 }
 
 .LeadCardLog {
-  font-size: 12px;
-  color: #6b7280;
-  line-height: 1.45;
-  white-space: pre-wrap;
   background: #f9fafb;
   border-radius: 8px;
   padding: 8px;
+}
+
+.LeadCardLog .LeadTimeline {
+  max-width: none;
+  min-width: 0;
 }
 
 /* ── Password eye toggle ────────────────────────────────── */
@@ -1108,7 +1118,8 @@
 /* ── Status select pill wrapper ─────────────────────────── */
 .StatusSelectWrap {
   position: relative;
-  display: inline-block;
+  display: block;
+  width: 100%;
 }
 
 .StatusSelectWrap select {
@@ -1116,6 +1127,7 @@
   appearance: none;
   padding-right: 28px !important;
   border-radius: 10px;
+  width: 100%;
   font-family: inherit;
 }
 
@@ -1133,28 +1145,6 @@
   pointer-events: none;
 }
 
-/* ── Show All / filter action buttons ───────────────────── */
-.ShowAllBtn {
-  height: 32px;
-  padding: 0 14px;
-  border-radius: 8px;
-  border: 1px solid #dbc9c9;
-  background: #fff;
-  color: #6b7280;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: inherit;
-  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
-  white-space: nowrap;
-}
-
-.ShowAllBtn:hover {
-  border-color: #ce050d;
-  color: #ce050d;
-  background: #fff5f5;
-}
-
 /* ── Lead delete button ─────────────────────────────────── */
 .LeadDeleteBtn {
   width: 30px;
@@ -1167,7 +1157,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
   flex-shrink: 0;
 }
 
@@ -1179,4 +1171,117 @@
 .LeadDeleteBtn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* ── Lead Timeline Log ──────────────────────────────────── */
+.LeadTimeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 200px;
+  max-width: 240px;
+}
+
+.LeadTimelineItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 0;
+  position: relative;
+}
+
+.LeadTimelineItem:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 18px;
+  bottom: -2px;
+  width: 2px;
+  background: #e5e7eb;
+}
+
+.LeadTimelineDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ce050d;
+  flex-shrink: 0;
+  margin-top: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.LeadTimelineContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.LeadTimelineTime {
+  font-size: 10px;
+  color: #9ca3af;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.LeadTimelineText {
+  font-size: 12px;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+/* ── Clear Range Small Button ───────────────────────────── */
+.LeadClearRangeSmallBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+  margin-left: 4px;
+}
+
+.LeadClearRangeSmallBtnHidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.LeadClearRangeSmallBtn:hover {
+  background: #fee2e2;
+  color: #ce050d;
+}
+
+/* ── Improved Lead Table ────────────────────────────────── */
+.LeadTable th,
+.LeadTable td {
+  vertical-align: top;
+}
+
+.LeadTable tbody tr {
+  transition: background 0.15s ease;
+}
+
+.LeadTable tbody tr:hover {
+  background: #fafafa;
+}
+
+.LeadTable td:first-child {
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.LeadTable td:nth-child(2) {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

@@ -22,13 +22,44 @@
 }
 
 .DashTopBarTitle {
-  flex: 1;
   font-size: 15px;
   font-weight: 600;
   color: #111827;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.DashTopBarLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+.DashTopBarBackLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ce050d;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: #fff5f5;
+  border: 1px solid rgba(206, 5, 13, 0.25);
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.DashTopBarBackLink:hover {
+  background: #fee2e2;
+  border-color: #ce050d;
 }
 
 .DashTopBarRight {
@@ -55,7 +86,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
 .DashTopBarRefreshBtn:hover:not(:disabled) {
@@ -69,7 +102,9 @@
 }
 
 @keyframes dash-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .DashTopBarRefreshBtnSpinning svg {
@@ -84,7 +119,8 @@
 }
 
 .DashTopBarSignOutBtn {
-  width: 32px;
+  padding: 0px 10px;
+  width: max-content;
   height: 32px;
   border-radius: 8px;
   border: 1px solid #fca5a5;
@@ -94,7 +130,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .DashTopBarSignOutBtn:hover {
@@ -102,12 +140,7 @@
   border-color: #f87171;
 }
 
-/* ── Main content ────────────────────────────────────────── */
-.DashContent {
-  flex: 1;
-  overflow-x: hidden;
-}
-
+/* ── PageShell inside Dashboard shell ────────────────────── */
 .DashShell > section.PageShell {
   flex: 1;
   background: transparent;

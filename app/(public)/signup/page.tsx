@@ -44,7 +44,7 @@ function PasswordField({
           required
         />
         <button type="button" className="FieldPasswordToggle" onClick={() => setShow((p) => !p)} tabIndex={-1} aria-label={show ? "Hide" : "Show"}>
-          {show ? <EyeOff size={17} /> : <Eye size={17} />}
+          {show ? <Eye size={17} /> : <EyeOff size={17} />}
         </button>
       </div>
       <div id={`${id}-hint`} className="FieldHintSlot">

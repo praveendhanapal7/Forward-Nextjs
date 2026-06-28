@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 import { blogPosts, getBlogPostBySlug } from "@/lib/blogPosts";
 import "@/styles/Pages.css";
 
@@ -40,7 +41,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             ))}
           </div>
           <p style={{ marginTop: "16px" }}>
-            <Link href="/blog">← Back to Blog</Link>
+            <Link href="/blog" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><ArrowLeft size={15} /> Back to Blog</Link>
           </p>
         </article>
       </div>

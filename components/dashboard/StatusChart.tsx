@@ -102,19 +102,18 @@ export function StatusChart({ counts, total }: Props) {
       <div className="StatusChartBody">
         {view === "pie" ? (
           <>
-            <ResponsiveContainer width="100%" height={240}>
-              <PieChart>
+            <ResponsiveContainer width="100%" height={320}>
+              <PieChart >
                 <Pie
                   data={counts}
                   cx="50%"
                   cy="50%"
                   innerRadius="45%"
-                  outerRadius="72%"
+                  outerRadius="78%"
                   dataKey="count"
                   paddingAngle={counts.length > 1 ? 2 : 0}
                   strokeWidth={2}
                   stroke="#ffffff"
-                  isAnimationActive={false}
                 >
                   <Label
                     content={({ viewBox }) => {
@@ -162,9 +161,9 @@ export function StatusChart({ counts, total }: Props) {
               />
               <Tooltip
                 content={<CustomTooltip />}
-                cursor={{ fill: "rgba(0,0,0,0.04)" }}
+                cursor={{ fill: "rgba(206, 5, 13, 0.06)" }}
               />
-              <Bar dataKey="count" radius={[6, 6, 0, 0]} isAnimationActive={false}>
+              <Bar dataKey="count" radius={[6, 6, 0, 0]}>
                 {counts.map((entry) => (
                   <Cell key={entry.status} fill={entry.color} />
                 ))}

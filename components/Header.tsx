@@ -38,14 +38,19 @@ export default function Header() {
       )}
 
       <header className="HeaderContainer">
-        <Link href="/" className="LogoLink" aria-label="Forward Agency Home" onClick={close}>
+        <Link
+          href="/"
+          className="LogoLink"
+          aria-label="Forward Agency Home"
+          onClick={close}
+        >
           <Image
             src="/Images/forward-logo.png"
             alt="Forward Agency"
-            width={52}
-            height={52}
+            width={150}
+            height={92}
             priority
-            style={{ objectFit: "contain" }}
+            style={{ objectFit: "cover" }}
           />
         </Link>
 
@@ -83,16 +88,34 @@ export default function Header() {
             {isAuthenticated ? (
               <>
                 {user?.name && (
-                  <span className="HeaderUserGreeting">Hi, {user.name.split(" ")[0]}</span>
+                  <span className="HeaderUserGreeting">
+                    Hi, {user.name.split(" ")[0]}
+                  </span>
                 )}
-                <button type="button" className="HeaderButton HeaderActionLink" onClick={handleSignOut}>
+                <button
+                  type="button"
+                  className="HeaderButton HeaderActionLink"
+                  onClick={handleSignOut}
+                >
                   Sign Out
                 </button>
               </>
             ) : (
               <>
-                <Link href="/signin" className="HeaderButton HeaderActionLink" onClick={close}>Sign In</Link>
-                <Link href="/signup" className="HeaderButton2 HeaderActionLink" onClick={close}>Sign Up</Link>
+                <Link
+                  href="/signin"
+                  className="HeaderButton HeaderActionLink"
+                  onClick={close}
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/signup"
+                  className="HeaderButton2 HeaderActionLink"
+                  onClick={close}
+                >
+                  Sign Up
+                </Link>
               </>
             )}
           </div>
@@ -103,16 +126,26 @@ export default function Header() {
           {isAuthenticated ? (
             <>
               {user?.name && (
-                <span className="HeaderUserGreeting">Hi, {user.name.split(" ")[0]}</span>
+                <span className="HeaderUserGreeting">
+                  Hi, {user.name.split(" ")[0]}
+                </span>
               )}
-              <button type="button" className="HeaderButton HeaderActionLink" onClick={handleSignOut}>
+              <button
+                type="button"
+                className="HeaderButton HeaderActionLink"
+                onClick={handleSignOut}
+              >
                 Sign Out
               </button>
             </>
           ) : (
             <>
-              <Link href="/signin" className="HeaderButton HeaderActionLink">Sign In</Link>
-              <Link href="/signup" className="HeaderButton2 HeaderActionLink">Sign Up</Link>
+              <Link href="/signin" className="HeaderButton HeaderActionLink">
+                Sign In
+              </Link>
+              <Link href="/signup" className="HeaderButton2 HeaderActionLink">
+                Sign Up
+              </Link>
             </>
           )}
         </div>

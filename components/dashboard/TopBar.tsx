@@ -1,8 +1,14 @@
 "use client";
 
-import { LogOut, RefreshCw } from "lucide-react";
+import {
+  ArrowBigLeftDashIcon,
+  ExternalLink,
+  LogOut,
+  RefreshCw,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useAuth } from "@/components/auth/AuthContext";
 
 interface TopBarProps {
@@ -43,7 +49,17 @@ export function TopBar({ lastUpdated, isRefreshing, onRefresh }: TopBarProps) {
 
   return (
     <header className="DashTopBar">
-      <div className="DashTopBarTitle">Lead Management Portal</div>
+      <div className="DashTopBarLeft">
+        <Link
+          href="/services"
+          className="DashTopBarBackLink"
+          title="Back to site"
+        >
+          <ArrowBigLeftDashIcon size={14} />
+          <span>Back to site</span>
+        </Link>
+        <span className="DashTopBarTitle">Lead Management Portal</span>
+      </div>
 
       <div className="DashTopBarRight">
         {lastUpdated && (
@@ -69,7 +85,7 @@ export function TopBar({ lastUpdated, isRefreshing, onRefresh }: TopBarProps) {
           title="Sign out"
           aria-label="Sign out"
         >
-          <LogOut size={15} />
+          Signout
         </button>
       </div>
     </header>

@@ -79,7 +79,7 @@ export function Sidebar({
                 width={140}
                 height={36}
                 priority
-                style={{ objectFit: "contain", objectPosition: "left" }}
+                style={{ objectFit: "cover", objectPosition: "left" }}
               />
             )}
           </Link>

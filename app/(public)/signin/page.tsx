@@ -117,7 +117,7 @@ function SignInForm() {
                 onClick={() => setShowPassword((p) => !p)} tabIndex={-1}
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
-                {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
+                {showPassword ? <Eye size={17} /> : <EyeOff size={17} />}
               </button>
             </div>
             {fieldErrors.password && <p id="password-error" className="FieldError">{fieldErrors.password}</p>}
@@ -142,6 +142,12 @@ function SignInForm() {
 }
 
 export default function SignInPage() {
+  const { loading } = useAuth();
+
+  if (loading) {
+    return <div className="PageSpinner"><div className="Spinner" /></div>;
+  }
+
   return (
     <GuestRoute>
       <SignInForm />
