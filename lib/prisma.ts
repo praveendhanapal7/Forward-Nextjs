@@ -4,7 +4,9 @@ import { Pool } from "pg";
 
 function createClient() {
   // Strip sslmode from URL so the ssl option below takes full effect
-  const dbUrl = (process.env.DATABASE_URL ?? "").replace(/([?&])sslmode=[^&]*/g, "$1").replace(/[?&]$/, "");
+  const dbUrl = (process.env.DATABASE_URL ?? "")
+    .replace(/([?&])sslmode=[^&]*/g, "$1")
+    .replace(/[?&]$/, "");
   const pool = new Pool({
     connectionString: dbUrl,
     ssl: { rejectUnauthorized: false },
