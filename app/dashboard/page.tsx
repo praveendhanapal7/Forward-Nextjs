@@ -133,8 +133,8 @@ interface Lead {
 function parseLeadDate(lead: Lead): Date | null {
   const raw = lead.enquiryEntry;
   if (!raw) return null;
-  const iso = new Date(raw);
-  if (!isNaN(iso.getTime())) return iso;
+  // en-IN strings (d/m/y) must be parsed before `new Date(raw)` — otherwise
+  // values like "1/7/2026" are read as US m/d/y (Jan 7 instead of Jul 1).
   const m = raw.match(
     /^(\d{1,2})\/(\d{1,2})\/(\d{4}),\s*(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(am|pm)$/i,
   );
@@ -152,7 +152,19 @@ function parseLeadDate(lead: Lead): Date | null {
       Number(sec),
     );
   }
+  const iso = new Date(raw);
+  if (!isNaN(iso.getTime())) return iso;
   return null;
+}
+
+function startOfDay(d: Date): Date {
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+}
+
+function addDays(d: Date, n: number): Date {
+  const result = startOfDay(d);
+  result.setDate(result.getDate() + n);
+  return result;
 }
 
 function SortIcon({
@@ -204,7 +216,6 @@ export default function DashboardPage() {
   const [sortKey, setSortKey] = useState<SortKey>(null);
   const [sortDir, setSortDir] = useState<SortDir>("asc");
 
-  const hasInitializedDateFilter = useRef(false);
   const localLeadCountRef = useRef<number | null>(null);
 
   const fetchLeads = useCallback(
@@ -241,19 +252,6 @@ export default function DashboardPage() {
     const timer = setInterval(() => fetchLeads(true), LEAD_REFRESH_INTERVAL_MS);
     return () => clearInterval(timer);
   }, [user, fetchLeads]);
-
-  useEffect(() => {
-    if (hasInitializedDateFilter.current || leads.length === 0) return;
-    const now = new Date();
-    const tod = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const tom = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-    const hasToday = leads.some((l) => {
-      const d = parseLeadDate(l);
-      return d && d >= tod && d < tom;
-    });
-    setDateFilter(hasToday ? "TODAY" : "DEFAULT");
-    hasInitializedDateFilter.current = true;
-  }, [leads]);
 
   useEffect(() => {
     if (!user || !isAgency) return;
@@ -338,10 +336,10 @@ export default function DashboardPage() {
 
   const filteredLeads = useMemo(() => {
     const now = new Date();
-    const daysAgo = (n: number) => new Date(now.getTime() - n * 86400000);
-    const tod = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const tom = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-    const yes = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+    const tod = startOfDay(now);
+    const tom = addDays(now, 1);
+    const yes = addDays(now, -1);
+    const last7Start = addDays(now, -6);
     let scoped = sortedLeads;
     switch (dateFilter) {
       case "TODAY":
@@ -359,17 +357,20 @@ export default function DashboardPage() {
       case "LAST_7_DAYS":
         scoped = sortedLeads.filter((l) => {
           const d = parseLeadDate(l);
-          return d && d >= daysAgo(7);
+          return d && d >= last7Start;
         });
         break;
       case "ALL_TIME":
+      case "DEFAULT":
         scoped = sortedLeads;
         break;
       case "CUSTOM": {
         const s = customStartDate
           ? new Date(`${customStartDate}T00:00:00`)
           : null;
-        const e = customEndDate ? new Date(`${customEndDate}T23:59:59`) : null;
+        const e = customEndDate
+          ? new Date(`${customEndDate}T23:59:59.999`)
+          : null;
         scoped = sortedLeads.filter((l) => {
           const d = parseLeadDate(l);
           if (!d) return false;
@@ -378,29 +379,6 @@ export default function DashboardPage() {
           return true;
         });
         break;
-      }
-      default: {
-        const today = sortedLeads.filter((l) => {
-          const d = parseLeadDate(l);
-          return d && d >= tod && d < tom;
-        });
-        if (today.length > 0) {
-          scoped = today;
-          break;
-        }
-        const recent = sortedLeads.filter((l) => {
-          const d = parseLeadDate(l);
-          return d && d >= daysAgo(2);
-        });
-        if (recent.length > 0) {
-          scoped = recent;
-          break;
-        }
-        const fallback = sortedLeads.filter((l) => {
-          const d = parseLeadDate(l);
-          return d && d >= daysAgo(15);
-        });
-        scoped = fallback.length > 0 ? fallback : sortedLeads;
       }
     }
     return statusFilter === "ALL"
