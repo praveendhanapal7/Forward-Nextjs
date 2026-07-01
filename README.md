@@ -11,16 +11,16 @@ A full-stack Next.js application for **Forward Agency** to manage client leads, 
 
 ## Tech Stack
 
-| Layer | Tech |
-|---|---|
-| Framework | Next.js 16 (App Router) |
-| Database | PostgreSQL via Prisma ORM |
-| Auth | Cookie-based sessions (HttpOnly, 7-day TTL) |
+| Layer         | Tec                                                |
+| ------------- | -------------------------------------------------- |
+| Framework     | Next.js 16 (App Router)                            |
+| Database      | PostgreSQL via Prisma ORM                          |
+| Auth          | Cookie-based sessions (HttpOnly, 7-day TTL)        |
 | Rate limiting | Upstash Redis (graceful fallback when unavailable) |
-| Validation | Zod schemas |
-| Charts | Recharts |
-| Icons | Lucide React |
-| Font | Plus Jakarta Sans (via next/font) |
+| Validation    | Zod schemas                                        |
+| Charts        | Recharts                                           |
+| Icons         | Lucide React                                       |
+| Font          | Plus Jakarta Sans (via next/font)                  |
 
 ## Getting Started
 
@@ -66,10 +66,10 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Account Types
 
-| Role | Access |
-|---|---|
-| `client` | View their own brand's leads only |
-| `staff` | Add leads for their assigned brand |
+| Role     | Access                                 |
+| -------- | -------------------------------------- |
+| `client` | View their own brand's leads only      |
+| `staff`  | Add leads for their assigned brand     |
 | `agency` | See all brands, add leads to any brand |
 
 ## Lead Status Workflow
