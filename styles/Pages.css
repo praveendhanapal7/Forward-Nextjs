@@ -925,6 +925,14 @@
   transition: filter 0.2s ease;
 }
 
+.StatusChartCanvas {
+  position: relative;
+}
+
+.StatusChartCanvas .recharts-tooltip-wrapper {
+  pointer-events: none;
+}
+
 .StatusChartWrap:hover .StatusChartBody {
   filter: drop-shadow(0 4px 12px rgba(206, 5, 13, 0.08));
 }
