@@ -531,6 +531,11 @@ export default function DashboardPage() {
     }
   };
 
+  const markLeadAttendedFromContact = (lead: Lead) => {
+    if ((lead.status || "NEW") === "ATTENDED") return;
+    void updateStatus(lead.id, "ATTENDED");
+  };
+
   const assignVisitingStore = async (lead: Lead) => {
     const visitingStoreDate = visitDateDrafts[lead.id] || lead.visitingStoreDate || "";
     if (!visitingStoreDate) {
@@ -1197,6 +1202,7 @@ export default function DashboardPage() {
                                 aria-label={`Call ${lead.phoneNumber}`}
                                 title="Call"
                                 style={actionBtn("#111827")}
+                                onClick={() => markLeadAttendedFromContact(lead)}
                               >
                                 <Phone size={15} />
                               </a>
@@ -1207,6 +1213,7 @@ export default function DashboardPage() {
                                 aria-label={`WhatsApp ${lead.phoneNumber}`}
                                 title="WhatsApp"
                                 style={actionBtn("#25D366")}
+                                onClick={() => markLeadAttendedFromContact(lead)}
                               >
                                 <FaWhatsapp />
                               </a>
@@ -1353,6 +1360,7 @@ export default function DashboardPage() {
                           href={`tel:${(lead.phoneNumber || "").replace(/[^\d+]/g, "")}`}
                           title="Call"
                           style={actionBtn("#111827")}
+                          onClick={() => markLeadAttendedFromContact(lead)}
                         >
                           <Phone size={15} />
                         </a>
@@ -1362,6 +1370,7 @@ export default function DashboardPage() {
                           rel="noreferrer"
                           title="WhatsApp"
                           style={actionBtn("#25D366")}
+                          onClick={() => markLeadAttendedFromContact(lead)}
                         >
                           <FaWhatsapp />
                         </a>
