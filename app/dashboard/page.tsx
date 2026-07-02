@@ -532,7 +532,7 @@ export default function DashboardPage() {
   };
 
   const markLeadAttendedFromContact = (lead: Lead) => {
-    if ((lead.status || "NEW") === "ATTENDED") return;
+    if ((lead.status || "NEW") !== "NEW") return;
     void updateStatus(lead.id, "ATTENDED");
   };
 
