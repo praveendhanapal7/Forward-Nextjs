@@ -21,16 +21,17 @@ model User {
 }
 
 model Lead {
-  id           Int     @id @default(autoincrement())
-  addedBy      String? @map("added_by")
-  clientName   String? @map("client_name")
-  enquiryEntry String? @map("enquiry_entry")
-  phoneNumber  String? @map("phone_number")
-  requirements String?
-  status       String?
-  link         String?
-  notes        String?
-  log          String? @db.Text
+  id                Int     @id @default(autoincrement())
+  addedBy           String? @map("added_by")
+  clientName        String? @map("client_name")
+  enquiryEntry      String? @map("enquiry_entry")
+  phoneNumber       String? @map("phone_number")
+  requirements      String?
+  status            String?
+  visitingStoreDate String? @map("visiting_store_date")
+  link              String?
+  notes             String?
+  log               String? @db.Text
 
   @@map("leads")
 }

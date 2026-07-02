@@ -75,6 +75,7 @@ export async function POST(request: Request) {
         addedBy,
         status: data.status ?? "NEW",
         link: data.link ?? null,
+        log: appendAuditLog(null, "Lead added", addedBy),
       },
     });
 

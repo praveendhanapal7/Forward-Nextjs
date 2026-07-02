@@ -1,3 +1,4 @@
+import Image from "next/image";
 import "@/styles/ClientsSection.css";
 
 const clientSlots = [
@@ -30,14 +31,16 @@ export default function ClientsSection() {
         </p>
       </div>
       <div className="ClientLogoGrid">
-        {clientSlots.map((client, index) => (
+        {clientSlots.map((client) => (
           <article
             key={client.id}
             className="ClientLogoCard"
           >
-            <img
+            <Image
               src={client.logo}
               alt={client.name}
+              width={180}
+              height={80}
               className="ClientLogoImage"
               style={{ borderRadius: "20px" }}
             />

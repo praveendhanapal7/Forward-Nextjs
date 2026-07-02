@@ -13,7 +13,7 @@ export async function GET() {
       select: { brandName: true },
     });
     const brands = models
-      .map((m: any) => m.brandName)
+      .map((m) => m.brandName)
       .filter((b): b is string => Boolean(b));
 
     return Response.json(brands);
