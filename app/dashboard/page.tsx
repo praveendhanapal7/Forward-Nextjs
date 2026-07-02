@@ -42,10 +42,11 @@ const STATUS_ORDER = [
 ];
 
 const DATE_FILTER_OPTIONS = [
-  { value: "DEFAULT", label: "Recent First" },
+  { value: "DEFAULT", label: "All leads" },
   { value: "TODAY", label: "Today" },
   { value: "YESTERDAY", label: "Yesterday" },
   { value: "LAST_7_DAYS", label: "Last 7 days" },
+  { value: "LATEST_15_DAYS", label: "Latest 15 days" },
   { value: "ALL_TIME", label: "All Time" },
   { value: "CUSTOM", label: "Custom date range" },
 ];
@@ -399,6 +400,7 @@ export default function DashboardPage() {
     const tom = addDays(now, 1);
     const yes = addDays(now, -1);
     const last7Start = addDays(now, -6);
+    const last15Start = addDays(now, -14);
     let scoped = sortedLeads;
     switch (dateFilter) {
       case "TODAY":
@@ -422,6 +424,12 @@ export default function DashboardPage() {
       case "ALL_TIME":
       case "DEFAULT":
         scoped = sortedLeads;
+        break;
+      case "LATEST_15_DAYS":
+        scoped = sortedLeads.filter((l) => {
+          const d = parseLeadDate(l);
+          return d && d >= last15Start;
+        });
         break;
       case "CUSTOM": {
         const s = customStartDate
