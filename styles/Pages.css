@@ -129,6 +129,36 @@
   border-color: #ce050d;
 }
 
+.LeadMobileSortWrap {
+  display: none;
+}
+
+.LeadMobileSortControls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 42px;
+  gap: 8px;
+}
+
+.LeadSortDirBtn {
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid #dbc9c9;
+  background: #ffffff;
+  color: #ce050d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.LeadSortDirBtn:hover {
+  background: #fff7f7;
+  border-color: #ce050d;
+}
+
 .NarrativeBlock {
   display: grid;
   gap: 12px;
@@ -1045,6 +1075,17 @@
   color: #111827;
 }
 
+.LeadCardStatusText {
+  border-radius: 999px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 8px;
+  white-space: nowrap;
+}
+
 .LeadCardReq {
   font-size: 13px;
   color: #4b5563;
@@ -1056,12 +1097,42 @@
   color: #9ca3af;
 }
 
+.LeadCardLink {
+  color: #055cce;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
 .LeadCardActions {
   display: flex;
   gap: 8px;
   align-items: center;
   flex-wrap: wrap;
   justify-content: flex-end;
+}
+
+.LeadCardVSAction {
+  border: 1px solid #f2d8c4;
+  border-radius: 10px;
+  background: #fffaf5;
+  padding: 8px;
+}
+
+.LeadCardBottomActions {
+  border-top: 1px solid #f0dfdf;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.LeadCardBottomActions .LeadDeleteBtn {
+  margin-left: auto;
 }
 
 .LeadCardNotes {
@@ -1449,6 +1520,49 @@
 }
 
 @media (max-width: 640px) {
+  .LeadEntriesHeader {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .LeadEntriesHeader > div:first-child,
+  .LeadFiltersRow {
+    width: 100%;
+  }
+
+  .LeadFiltersRow {
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .LeadMobileSortWrap {
+    display: grid;
+  }
+
+  .LeadDateRangeWrap,
+  .LeadDateRangeInputs {
+    width: 100%;
+  }
+
+  .LeadDateRangeInputs {
+    grid-template-columns: 1fr;
+  }
+
+  .StatusChartHeader {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .StatusChartToggle,
+  .StatusChartTotal {
+    width: 100%;
+  }
+
+  .StatusChartToggleBtn {
+    flex: 1;
+    justify-content: center;
+  }
+
   .LeadTableScrollWrap {
     display: none;
   }
@@ -1472,10 +1586,12 @@
   .VSDisplayOutcome {
     flex-wrap: wrap;
     justify-content: flex-start;
+    width: 100%;
   }
 
   .VSDisplayEdit {
     width: 100%;
+    flex-wrap: wrap;
   }
 
   .VSDisplayEdit input {
@@ -1483,7 +1599,26 @@
     min-width: 0;
   }
 
+  .VSDisplayEdit .VSLeadBtn,
+  .VSDisplayEdit .VSRemoveBtn {
+    flex: 1;
+  }
+
   .LeadCardActions {
+    justify-content: flex-start;
+  }
+
+  .LeadCardRow {
+    align-items: flex-start;
+  }
+
+  .LeadCardStatusText {
+    max-width: 46%;
+    text-align: center;
+  }
+
+  .LeadCardBottomActions {
+    margin-top: auto;
     justify-content: flex-start;
   }
 
@@ -1494,6 +1629,10 @@
   .VSLeadAction input {
     flex: 1;
     min-width: 0;
+  }
+
+  .LeadCardVSAction .VSLeadBtn {
+    min-width: 64px;
   }
 }
 

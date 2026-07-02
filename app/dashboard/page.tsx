@@ -1044,6 +1044,35 @@ export default function DashboardPage() {
                   </div>
                 </div>
               )}
+              <div className="LeadFilterWrap LeadMobileSortWrap">
+                <label htmlFor="mobile-sort-filter">
+                  <span className="LeadFilterLabel">
+                    <ChevronsUpDown size={14} /> Sort Leads
+                  </span>
+                </label>
+                <div className="LeadMobileSortControls">
+                  <select
+                    id="mobile-sort-filter"
+                    value={sortKey ?? ""}
+                    onChange={(e) => setSortKey((e.target.value || null) as SortKey)}
+                  >
+                    <option value="">Default</option>
+                    <option value="phone">Lead Number</option>
+                    <option value="requirements">Requirement</option>
+                    <option value="enquiryEntry">Entry Time</option>
+                    <option value="status">Status</option>
+                  </select>
+                  <button
+                    type="button"
+                    className="LeadSortDirBtn"
+                    onClick={() => setSortDir((prev) => (prev === "asc" ? "desc" : "asc"))}
+                    aria-label={`Sort ${sortDir === "asc" ? "ascending" : "descending"}`}
+                    title={`Sort ${sortDir === "asc" ? "ascending" : "descending"}`}
+                  >
+                    {sortDir === "asc" ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1355,56 +1384,9 @@ export default function DashboardPage() {
                   <div key={lead.id} className="LeadCard">
                     <div className="LeadCardRow">
                       <span className="LeadCardPhone">{lead.phoneNumber}</span>
-                      <div className="LeadCardActions">
-                        <a
-                          href={`tel:${(lead.phoneNumber || "").replace(/[^\d+]/g, "")}`}
-                          title="Call"
-                          style={actionBtn("#111827")}
-                          onClick={() => markLeadAttendedFromContact(lead)}
-                        >
-                          <Phone size={15} />
-                        </a>
-                        <a
-                          href={`https://wa.me/${(lead.phoneNumber || "").replace(/\D/g, "")}`}
-                          target="_blank"
-                          rel="noreferrer"
-                          title="WhatsApp"
-                          style={actionBtn("#25D366")}
-                          onClick={() => markLeadAttendedFromContact(lead)}
-                        >
-                          <FaWhatsapp />
-                        </a>
-                        <div className="VSLeadAction">
-                          {lead.visitingStoreDate && (
-                            <span className="VSLeadExistingDate">
-                              VS: {formatDateInput(lead.visitingStoreDate)}
-                            </span>
-                          )}
-                          <input
-                            type="date"
-                            value={visitDateDrafts[lead.id] ?? lead.visitingStoreDate ?? ""}
-                            onChange={(e) =>
-                              setVisitDateDrafts((prev) => ({
-                                ...prev,
-                                [lead.id]: e.target.value,
-                              }))
-                            }
-                            title="Select visiting store date"
-                            aria-label={`Select visiting store date for ${lead.phoneNumber}`}
-                          />
-                          <button
-                            type="button"
-                            className="VSLeadBtn"
-                            onClick={() => assignVisitingStore(lead)}
-                            disabled={assigningVisitLeadId === lead.id}
-                            title="Add to Visiting Store display"
-                            aria-label={`Add ${lead.phoneNumber} to Visiting Store display`}
-                          >
-                            <CalendarPlus size={13} />
-                            VS
-                          </button>
-                        </div>
-                      </div>
+                      <span className="LeadCardStatusText">
+                        {getStatusMeta(lead.status || "NEW").label}
+                      </span>
                     </div>
                     <p className="LeadCardReq">{lead.requirements}</p>
                     <div className="LeadCardRow">
@@ -1412,6 +1394,51 @@ export default function DashboardPage() {
                       {isAgency && (
                         <span className="LeadCardMeta">{lead.clientName}</span>
                       )}
+                    </div>
+                    <div className="LeadCardRow">
+                      <span className="LeadCardMeta">
+                        Added by {lead.addedBy || "Unknown"}
+                      </span>
+                      {lead.link && (
+                        <a
+                          href={lead.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="LeadCardLink"
+                        >
+                          Link <ExternalLink size={12} />
+                        </a>
+                      )}
+                    </div>
+                    <div className="VSLeadAction LeadCardVSAction">
+                      {lead.visitingStoreDate && (
+                        <span className="VSLeadExistingDate">
+                          VS: {formatDateInput(lead.visitingStoreDate)}
+                        </span>
+                      )}
+                      <input
+                        type="date"
+                        value={visitDateDrafts[lead.id] ?? lead.visitingStoreDate ?? ""}
+                        onChange={(e) =>
+                          setVisitDateDrafts((prev) => ({
+                            ...prev,
+                            [lead.id]: e.target.value,
+                          }))
+                        }
+                        title="Select visiting store date"
+                        aria-label={`Select visiting store date for ${lead.phoneNumber}`}
+                      />
+                      <button
+                        type="button"
+                        className="VSLeadBtn"
+                        onClick={() => assignVisitingStore(lead)}
+                        disabled={assigningVisitLeadId === lead.id}
+                        title="Add to Visiting Store display"
+                        aria-label={`Add ${lead.phoneNumber} to Visiting Store display`}
+                      >
+                        <CalendarPlus size={13} />
+                        VS
+                      </button>
                     </div>
                     <div className="StatusSelectWrap">
                       <select
@@ -1487,6 +1514,35 @@ export default function DashboardPage() {
                         </div>
                       </div>
                     )}
+                    <div className="LeadCardBottomActions">
+                      <a
+                        href={`tel:${(lead.phoneNumber || "").replace(/[^\d+]/g, "")}`}
+                        title="Call"
+                        style={actionBtn("#111827")}
+                        onClick={() => markLeadAttendedFromContact(lead)}
+                      >
+                        <Phone size={15} />
+                      </a>
+                      <a
+                        href={`https://wa.me/${(lead.phoneNumber || "").replace(/\D/g, "")}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        title="WhatsApp"
+                        style={actionBtn("#25D366")}
+                        onClick={() => markLeadAttendedFromContact(lead)}
+                      >
+                        <FaWhatsapp />
+                      </a>
+                      <button
+                        className="LeadDeleteBtn"
+                        onClick={() => deleteLead(lead.id)}
+                        disabled={deletingLeadId === lead.id}
+                        aria-label="Delete lead"
+                        title="Delete lead"
+                      >
+                        <Trash2 size={13} />
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
