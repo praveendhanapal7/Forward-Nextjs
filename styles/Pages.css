@@ -1801,8 +1801,11 @@
 }
 
 .LeadTable td:nth-child(2) {
-  max-width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  min-width: 260px;
+  max-width: 420px;
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
 }
