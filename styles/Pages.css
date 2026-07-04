@@ -129,6 +129,36 @@
   border-color: #ce050d;
 }
 
+.LeadMobileSortWrap {
+  display: none;
+}
+
+.LeadMobileSortControls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 42px;
+  gap: 8px;
+}
+
+.LeadSortDirBtn {
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid #dbc9c9;
+  background: #ffffff;
+  color: #ce050d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.LeadSortDirBtn:hover {
+  background: #fff7f7;
+  border-color: #ce050d;
+}
+
 .NarrativeBlock {
   display: grid;
   gap: 12px;
@@ -694,7 +724,7 @@
 .LeadTable {
   width: 100%;
   border-collapse: collapse;
-  min-width: 960px;
+  min-width: 1240px;
 }
 
 .LeadTable th,
@@ -925,6 +955,14 @@
   transition: filter 0.2s ease;
 }
 
+.StatusChartCanvas {
+  position: relative;
+}
+
+.StatusChartCanvas .recharts-tooltip-wrapper {
+  pointer-events: none;
+}
+
 .StatusChartWrap:hover .StatusChartBody {
   filter: drop-shadow(0 4px 12px rgba(206, 5, 13, 0.08));
 }
@@ -1037,6 +1075,17 @@
   color: #111827;
 }
 
+.LeadCardStatusText {
+  border-radius: 999px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 8px;
+  white-space: nowrap;
+}
+
 .LeadCardReq {
   font-size: 13px;
   color: #4b5563;
@@ -1048,10 +1097,42 @@
   color: #9ca3af;
 }
 
+.LeadCardLink {
+  color: #055cce;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
 .LeadCardActions {
   display: flex;
   gap: 8px;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.LeadCardVSAction {
+  border: 1px solid #f2d8c4;
+  border-radius: 10px;
+  background: #fffaf5;
+  padding: 8px;
+}
+
+.LeadCardBottomActions {
+  border-top: 1px solid #f0dfdf;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.LeadCardBottomActions .LeadDeleteBtn {
+  margin-left: auto;
 }
 
 .LeadCardNotes {
@@ -1074,6 +1155,339 @@
 .LeadCardLog .LeadTimeline {
   max-width: none;
   min-width: 0;
+}
+
+/* ── Visiting Store display ─────────────────────────────── */
+.VSDisplayCard {
+  display: grid;
+  gap: 14px;
+}
+
+.VSDisplayHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.VSDisplayHeader .PageSectionTitle {
+  margin-bottom: 0;
+}
+
+.VSDisplayCount {
+  min-width: 46px;
+  height: 34px;
+  border-radius: 8px;
+  background: #ffedd5;
+  color: #9a3412;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.VSDisplayEmpty {
+  color: #6b7280;
+}
+
+.VSDisplayList {
+  display: grid;
+  gap: 10px;
+}
+
+.VSDisplayItem {
+  border: 1px solid #f2d8c4;
+  border-radius: 10px;
+  background: #fffaf5;
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr) auto minmax(0, auto) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+}
+
+.VSDisplayItem--today {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.VSDisplayItem--today .VSDisplayDate,
+.VSDisplayItem--today .VSDisplayStatus {
+  border-color: #86efac;
+  color: #166534;
+}
+
+.VSDisplayItem--overdue {
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+.VSDisplayItem--overdue .VSDisplayDate,
+.VSDisplayItem--overdue .VSDisplayStatus {
+  border-color: #fca5a5;
+  color: #b91c1c;
+}
+
+.VSDisplayItem--blue {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+.VSDisplayItem--blue .VSDisplayDate,
+.VSDisplayItem--blue .VSDisplayStatus {
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+.VSDisplayDate {
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  padding: 8px 10px;
+}
+
+.VSDisplayDetails {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.VSDisplayDetails strong {
+  font-size: 14px;
+  color: #111827;
+}
+
+.VSDisplayDetails span {
+  color: #4b5563;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.VSDisplayDetails small {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.VSDisplayLog {
+  color: #64748b !important;
+  font-size: 11px !important;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.VSDisplayStatus {
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+.VSDisplayOutcome {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 5px;
+}
+
+.VSOutcomeBtn {
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 8px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.VSOutcomeBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.VSOutcomeBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.VSOutcomeBtn--won {
+  background: #dcfce7;
+  border-color: #86efac;
+  color: #166534;
+}
+
+.VSOutcomeBtn--lost {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+
+.VSOutcomeBtn--vs {
+  background: #fee2e2;
+  border-color: #f87171;
+  color: #b91c1c;
+}
+
+.VSDisplayEdit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.VSDisplayEdit input {
+  width: 128px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #374151;
+  padding: 0 6px;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.VSDisplayEdit input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.VSShowMoreBtn {
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid #bfdbfe;
+  background: #eff6ff;
+  color: #1d4ed8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  padding: 0 18px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.VSShowMoreBtn:hover {
+  background: #dbeafe;
+}
+
+.LeadActionGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.VSLeadAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.VSLeadExistingDate {
+  flex-basis: 100%;
+  color: #1d4ed8;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.VSLeadAction input {
+  width: 126px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 0 6px;
+  font-family: inherit;
+  font-size: 12px;
+  color: #374151;
+}
+
+.VSLeadAction input:focus {
+  outline: none;
+  border-color: #f97316;
+}
+
+.VSLeadBtn {
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #fdba74;
+  background: #fff7ed;
+  color: #9a3412;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 9px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.VSLeadBtn:hover:not(:disabled) {
+  background: #ffedd5;
+  border-color: #fb923c;
+}
+
+.VSLeadBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.VSRemoveBtn {
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #fca5a5;
+  background: #fff5f5;
+  color: #b91c1c;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 9px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.VSRemoveBtn:hover:not(:disabled) {
+  background: #fee2e2;
+  border-color: #f87171;
+}
+
+.VSRemoveBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* ── Password eye toggle ────────────────────────────────── */
@@ -1106,12 +1520,119 @@
 }
 
 @media (max-width: 640px) {
+  .LeadEntriesHeader {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .LeadEntriesHeader > div:first-child,
+  .LeadFiltersRow {
+    width: 100%;
+  }
+
+  .LeadFiltersRow {
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .LeadMobileSortWrap {
+    display: grid;
+  }
+
+  .LeadDateRangeWrap,
+  .LeadDateRangeInputs {
+    width: 100%;
+  }
+
+  .LeadDateRangeInputs {
+    grid-template-columns: 1fr;
+  }
+
+  .StatusChartHeader {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .StatusChartToggle,
+  .StatusChartTotal {
+    width: 100%;
+  }
+
+  .StatusChartToggleBtn {
+    flex: 1;
+    justify-content: center;
+  }
+
   .LeadTableScrollWrap {
     display: none;
   }
 
   .LeadCardList {
     display: flex;
+  }
+
+  .VSDisplayItem {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .VSDisplayDate,
+  .VSDisplayStatus,
+  .VSDisplayOutcome,
+  .VSDisplayEdit {
+    justify-self: start;
+  }
+
+  .VSDisplayOutcome {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .VSDisplayEdit {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .VSDisplayEdit input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .VSDisplayEdit .VSLeadBtn,
+  .VSDisplayEdit .VSRemoveBtn {
+    flex: 1;
+  }
+
+  .LeadCardActions {
+    justify-content: flex-start;
+  }
+
+  .LeadCardRow {
+    align-items: flex-start;
+  }
+
+  .LeadCardStatusText {
+    max-width: 46%;
+    text-align: center;
+  }
+
+  .LeadCardBottomActions {
+    margin-top: auto;
+    justify-content: flex-start;
+  }
+
+  .VSLeadAction {
+    width: 100%;
+  }
+
+  .VSLeadAction input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .LeadCardVSAction .VSLeadBtn {
+    min-width: 64px;
   }
 }
 
@@ -1280,8 +1801,11 @@
 }
 
 .LeadTable td:nth-child(2) {
-  max-width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  min-width: 260px;
+  max-width: 420px;
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
 }

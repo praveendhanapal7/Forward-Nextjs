@@ -30,6 +30,10 @@ export const StatusSchema = z.object({
   status: z.string().min(1).max(50),
 });
 
+export const VisitingStoreSchema = z.object({
+  visitingStoreDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+});
+
 export const NotesSchema = z.object({
   id: z.number().int().positive(),
   notes: z.string().max(2000),

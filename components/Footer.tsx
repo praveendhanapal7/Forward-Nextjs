@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 import "@/styles/Footer.css";
-import Image from "next/image";
 
 export default function Footer() {
   return (

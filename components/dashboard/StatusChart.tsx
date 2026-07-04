@@ -11,7 +11,6 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  Legend,
   Label,
   LabelList,
 } from "recharts";
@@ -63,6 +62,7 @@ function CustomLegend({ counts, total }: { counts: StatusCount[]; total: number 
 
 export function StatusChart({ counts, total }: Props) {
   const [view, setView] = useState<"pie" | "bar">("pie");
+  const [donutTooltipPosition, setDonutTooltipPosition] = useState<{ x: number; y: number }>();
 
   if (counts.length === 0) {
     return (
@@ -102,39 +102,51 @@ export function StatusChart({ counts, total }: Props) {
       <div className="StatusChartBody">
         {view === "pie" ? (
           <>
-            <ResponsiveContainer width="100%" height={320}>
-              <PieChart >
-                <Pie
-                  data={counts}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius="45%"
-                  outerRadius="78%"
-                  dataKey="count"
-                  paddingAngle={counts.length > 1 ? 2 : 0}
-                  strokeWidth={2}
-                  stroke="#ffffff"
-                >
-                  <Label
-                    content={({ viewBox }) => {
-                      const vb = viewBox as { cx?: number; cy?: number };
-                      const cx = vb.cx ?? 0;
-                      const cy = vb.cy ?? 0;
-                      return (
-                        <g>
-                          <text x={cx} y={cy - 5} textAnchor="middle" dominantBaseline="middle" fill="#ce050d" fontSize={26} fontWeight={700}>{total}</text>
-                          <text x={cx} y={cy + 15} textAnchor="middle" dominantBaseline="middle" fill="#9ca3af" fontSize={10} fontWeight={600} letterSpacing="0.08em">LEADS</text>
-                        </g>
-                      );
-                    }}
-                  />
-                  {counts.map((entry) => (
-                    <Cell key={entry.status} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip content={<CustomTooltip />} />
-              </PieChart>
-            </ResponsiveContainer>
+            <div
+              className="StatusChartCanvas"
+              onMouseMove={(event) => {
+                const bounds = event.currentTarget.getBoundingClientRect();
+                setDonutTooltipPosition({
+                  x: event.clientX - bounds.left + 14,
+                  y: event.clientY - bounds.top + 14,
+                });
+              }}
+              onMouseLeave={() => setDonutTooltipPosition(undefined)}
+            >
+              <ResponsiveContainer width="100%" height={320}>
+                <PieChart>
+                  <Pie
+                    data={counts}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius="45%"
+                    outerRadius="78%"
+                    dataKey="count"
+                    paddingAngle={counts.length > 1 ? 2 : 0}
+                    strokeWidth={2}
+                    stroke="#ffffff"
+                  >
+                    <Label
+                      content={({ viewBox }) => {
+                        const vb = viewBox as { cx?: number; cy?: number };
+                        const cx = vb.cx ?? 0;
+                        const cy = vb.cy ?? 0;
+                        return (
+                          <g>
+                            <text x={cx} y={cy - 5} textAnchor="middle" dominantBaseline="middle" fill="#ce050d" fontSize={26} fontWeight={700}>{total}</text>
+                            <text x={cx} y={cy + 15} textAnchor="middle" dominantBaseline="middle" fill="#9ca3af" fontSize={10} fontWeight={600} letterSpacing="0.08em">LEADS</text>
+                          </g>
+                        );
+                      }}
+                    />
+                    {counts.map((entry) => (
+                      <Cell key={entry.status} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip content={<CustomTooltip />} position={donutTooltipPosition} />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
             <CustomLegend counts={counts} total={total} />
           </>
         ) : (

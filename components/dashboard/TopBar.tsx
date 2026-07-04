@@ -2,8 +2,6 @@
 
 import {
   ArrowBigLeftDashIcon,
-  ExternalLink,
-  LogOut,
   RefreshCw,
 } from "lucide-react";
 import { useEffect, useState } from "react";
