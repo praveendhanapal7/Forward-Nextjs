@@ -25,8 +25,8 @@ import { StatusChart } from "@/components/dashboard/StatusChart";
 import { TopBar } from "@/components/dashboard/TopBar";
 import "@/styles/Pages.css";
 
-const LEAD_REFRESH_INTERVAL_MS = 30 * 1000;
-const LEAD_COUNT_POLL_INTERVAL_MS = 30 * 1000;
+const LEAD_REFRESH_INTERVAL_MS = 1000;
+const LEAD_COUNT_POLL_INTERVAL_MS = 1000;
 const VS_DISPLAY_LIMIT = 10;
 
 const STATUS_ORDER = [
