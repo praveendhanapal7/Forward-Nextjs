@@ -1,10 +1,11 @@
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
+import { DashboardShell } from "@/components/dashboard/DashboardShell";
 import "@/styles/Dashboard.css";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <ProtectedRoute>
-      <div className="DashShell">{children}</div>
+      <DashboardShell>{children}</DashboardShell>
     </ProtectedRoute>
   );
 }

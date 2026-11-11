@@ -1,4 +1,243 @@
-/* ── Dashboard Shell ─────────────────────────────────────── */
+/* ── CRM Layout (sidebar + main) ─────────────────────────── */
+.CRMLayout {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f6fa;
+  overflow-x: hidden;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+.DashSidebar {
+  width: 220px;
+  min-height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 30;
+  transition: width 0.2s ease;
+  flex-shrink: 0;
+}
+.DashSidebarCollapsed { width: 60px; }
+.DashSidebarOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 29;
+}
+
+.DashSidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  height: 60px;
+  min-height: 60px;
+  border-bottom: 1px solid #f3f4f6;
+  gap: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+}
+.DashSidebarCollapsed .DashSidebarHeader {
+  padding: 0 8px;
+  justify-content: center;
+}
+.DashSidebarLogo {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  text-decoration: none;
+}
+.DashLogoMark {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ce050d;
+  line-height: 1;
+}
+.DashSidebarCollapseBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  border: 1px solid #e5e7eb;
+  background: transparent;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+.DashSidebarCollapseBtn:hover { background: #f3f4f6; color: #374151; }
+
+.DashSidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 8px;
+  flex: 1;
+  overflow-y: auto;
+}
+.DashSidebarLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: background 0.15s, color 0.15s;
+}
+.DashSidebarLink:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+.DashSidebarLinkActive {
+  background: rgba(206,5,13,0.08);
+  color: #ce050d;
+}
+.DashSidebarLinkActive svg { color: #ce050d; }
+
+.DashSidebarFooter {
+  padding: 10px 8px 14px;
+  border-top: 1px solid #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.DashSidebarUser {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  overflow: hidden;
+}
+.DashSidebarAvatarOnly {
+  display: flex;
+  justify-content: center;
+  padding: 6px 0;
+}
+.DashSidebarAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ce050d;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.DashSidebarUserInfo {
+  min-width: 0;
+  flex: 1;
+}
+.DashSidebarUserName {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.DashSidebarUserRole {
+  display: block;
+  font-size: 11px;
+  color: #9ca3af;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+}
+.DashSidebarFooterLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: background 0.15s, color 0.15s;
+}
+.DashSidebarFooterLink:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+.DashSidebarLogout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+.DashSidebarLogout:hover {
+  background: rgba(206,5,13,0.08);
+  color: #dc2626;
+}
+
+/* ── Main content area ───────────────────────────────────── */
+.CRMMain {
+  margin-left: 220px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 0;
+  overflow-x: hidden;
+  transition: margin-left 0.2s ease;
+}
+.CRMMainCollapsed { margin-left: 60px; }
+
+/* Hamburger (mobile) */
+.CRMHamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #374151;
+  cursor: pointer;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 40;
+}
+
+/* ── Dashboard Shell (legacy, kept for compat) ───────────── */
 .DashShell {
   display: flex;
   flex-direction: column;
@@ -147,17 +386,39 @@
 }
 
 /* ── Mobile responsive ───────────────────────────────────── */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .DashSidebar {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease, width 0.2s ease;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.08);
+  }
+  .DashSidebarMobileOpen {
+    transform: translateX(0);
+  }
+  .DashSidebarOverlay {
+    display: block;
+  }
+  .CRMMain {
+    margin-left: 0 !important;
+  }
+  .CRMHamburger {
+    display: flex;
+  }
   .DashTopBar {
-    padding: 0 16px;
+    padding: 0 16px 0 60px;
     gap: 8px;
   }
-
   .DashTopBarMeta {
     display: none;
   }
-
   .DashTopBarUser {
     display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .DashTopBar {
+    padding: 0 32px;
+    gap: 12px;
   }
 }

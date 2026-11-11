@@ -5,15 +5,23 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
+  Users,
   LogOut,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
+  Link2,
+  Activity,
+  FolderOpen,
 } from "lucide-react";
 import { useAuth } from "@/components/auth/AuthContext";
 
 const navItems = [
-  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
+  { label: "Leads", href: "/dashboard/leads", icon: Users },
+  { label: "Projects", href: "/dashboard/projects", icon: FolderOpen },
+  { label: "Integrations", href: "/dashboard/integrations", icon: Link2 },
+  { label: "Logs", href: "/dashboard/logs", icon: Activity },
 ];
 
 interface SidebarProps {
@@ -69,20 +77,23 @@ export function Sidebar({
           .join(" ")}
       >
         <div className="DashSidebarHeader">
-          <Link href="/services" className="DashSidebarLogo" onClick={onMobileClose}>
-            {collapsed ? (
-              <span className="DashLogoMark">F</span>
-            ) : (
+          {!collapsed && (
+            <Link href="/dashboard" className="DashSidebarLogo" onClick={onMobileClose}>
               <Image
                 src="/Images/forward-logo.png"
                 alt="Forward Agency"
                 width={140}
                 height={36}
                 priority
-                style={{ objectFit: "cover", objectPosition: "left" }}
+                style={{
+                  width: 140,
+                  height: "auto",
+                  objectFit: "contain",
+                  objectPosition: "left",
+                }}
               />
-            )}
-          </Link>
+            </Link>
+          )}
           <button
             className="DashSidebarCollapseBtn"
             onClick={onToggleCollapse}
@@ -98,7 +109,7 @@ export function Sidebar({
               key={href}
               href={href}
               onClick={onMobileClose}
-              className={`DashSidebarLink ${pathname === href ? "DashSidebarLinkActive" : ""}`}
+              className={`DashSidebarLink ${pathname === href || (href !== "/dashboard" && pathname.startsWith(href)) ? "DashSidebarLinkActive" : ""}`}
               title={collapsed ? label : undefined}
             >
               <Icon size={18} strokeWidth={2} />

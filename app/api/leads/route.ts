@@ -23,20 +23,28 @@ function appendAuditLog(current: string | null | undefined, action: string, acto
   return current ? `${current}\n${entry}` : entry;
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     const user = await resolveUser();
     if (!user) return Response.json({ message: "Unauthorized" }, { status: 401 });
 
-    const leads = isAgency(user)
-      ? await prisma.lead.findMany({ orderBy: { id: "desc" } })
-      : user.brandName
-        ? await prisma.lead.findMany({
-            where: { clientName: user.brandName },
-            orderBy: { id: "desc" },
-          })
-        : [];
+    const { searchParams } = new URL(request.url);
+    const projectId = searchParams.get("projectId") ?? undefined;
 
+    const baseWhere = isAgency(user)
+      ? {}
+      : user.brandName
+        ? { clientName: user.brandName }
+        : null;
+
+    if (baseWhere === null) return Response.json([]);
+
+    const where = {
+      ...baseWhere,
+      ...(projectId && { projectId }),
+    };
+
+    const leads = await prisma.lead.findMany({ where, orderBy: { id: "desc" } });
     return Response.json(leads);
   } catch {
     return Response.json({ message: "Something went wrong" }, { status: 500 });

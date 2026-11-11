@@ -1,0 +1,337 @@
+/* ── Overview Page ─────────────────────────────────────── */
+.OVPage {
+  padding: 32px 36px 60px;
+  max-width: 1200px;
+}
+
+.OVHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.OVTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin: 4px 0 6px;
+}
+
+.OVSubtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.OVCTABtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #ce050d;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.OVCTABtn:hover { background: #a80409; }
+
+/* ── Stat cards ─────────────────────────────────────────── */
+.OVStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.OVStatCardLink { text-decoration: none; }
+.OVStatCardLink:hover .OVStatCard { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+
+.OVStatCard {
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.OVStatIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.OVStatInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.OVStatValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1;
+}
+
+.OVStatLabel {
+  font-size: 12px;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.OVStatArrow {
+  color: #d1d5db;
+  flex-shrink: 0;
+}
+
+/* ── Body layout ────────────────────────────────────────── */
+.OVBody {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+  align-items: start;
+}
+
+.OVRight {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Cards ──────────────────────────────────────────────── */
+.OVCard {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.OVCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+.OVCardHeader svg { color: #6b7280; flex-shrink: 0; }
+.OVCardLink {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ce050d;
+  text-decoration: none;
+}
+.OVCardLink:hover { text-decoration: underline; }
+
+/* ── Status list ────────────────────────────────────────── */
+.OVStatusList {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.OVStatusRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.OVStatusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.OVStatusName {
+  font-size: 13px;
+  color: #374151;
+  width: 130px;
+  flex-shrink: 0;
+  text-transform: capitalize;
+}
+
+.OVStatusBar {
+  flex: 1;
+  height: 6px;
+  background: #f3f4f6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.OVStatusBarFill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+.OVStatusCount {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+  width: 28px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── Recent leads ───────────────────────────────────────── */
+.OVRecentList {
+  display: flex;
+  flex-direction: column;
+}
+
+.OVRecentItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid #f9fafb;
+}
+.OVRecentItem:last-child { border-bottom: none; }
+
+.OVRecentAvatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  flex-shrink: 0;
+}
+
+.OVRecentInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.OVRecentPhone {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.OVRecentReq {
+  font-size: 11px;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.OVRecentStatus {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-transform: capitalize;
+}
+
+/* ── Sources ────────────────────────────────────────────── */
+.OVSourceList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 20px;
+}
+
+.OVSourceItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f9fafb;
+}
+.OVSourceItem:last-child { border-bottom: none; }
+
+.OVSourceDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.OVSourceName {
+  flex: 1;
+  font-size: 13px;
+  color: #374151;
+  display: flex;
+  align-items: center;
+}
+
+.OVSourceCount {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.OVIntCTA {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 20px 16px;
+  padding: 10px;
+  border: 1.5px dashed #d1d5db;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+.OVIntCTA:hover { border-color: #ce050d; color: #ce050d; }
+
+/* ── Loading / empty ────────────────────────────────────── */
+.OVLoading, .OVEmpty {
+  font-size: 13px;
+  color: #9ca3af;
+  padding: 16px 20px;
+}
+.OVEmpty a { color: #ce050d; text-decoration: none; }
+.OVEmpty a:hover { text-decoration: underline; }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .OVBody { grid-template-columns: 1fr; }
+  .OVStats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .OVPage { padding: 20px 16px 48px; }
+  .OVStats { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .OVStatCard { padding: 14px; }
+  .OVStatValue { font-size: 20px; }
+  .OVHeader { flex-direction: column; gap: 14px; }
+}

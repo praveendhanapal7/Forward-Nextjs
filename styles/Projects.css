@@ -1,0 +1,263 @@
+/* ── Projects Page ───────────────────────────────────────── */
+.ProjPageShell {
+  background: #f5f6fa;
+  min-height: calc(100vh - 60px);
+  padding: 32px 32px 72px !important;
+}
+
+/* ── Header row ──────────────────────────────────────────── */
+.ProjTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.ProjTopRowLeft h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+}
+.ProjTopRowLeft p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* ── New Project button ──────────────────────────────────── */
+.ProjNewBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background: #ce050d;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.ProjNewBtn:hover { background: #a80409; }
+
+/* ── Create form ─────────────────────────────────────────── */
+.ProjCreateCard {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.ProjCreateCard h3 {
+  margin: 0 0 18px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+.ProjFormRow {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.ProjFormField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 200px;
+}
+.ProjFormField label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.ProjInput {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #111827;
+  background: #fff;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+.ProjInput:focus { border-color: #ce050d; }
+.ProjFormActions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.ProjBtnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: #ce050d;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.ProjBtnPrimary:hover:not(:disabled) { background: #a80409; }
+.ProjBtnPrimary:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.ProjBtnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  padding: 9px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.ProjBtnSecondary:hover { background: #e5e7eb; }
+
+/* ── Project grid ────────────────────────────────────────── */
+.ProjGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* ── Project card ────────────────────────────────────────── */
+.ProjCard {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.15s;
+}
+.ProjCard:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+}
+
+.ProjCardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.ProjCardName {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+}
+.ProjCardDesc {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 2px 0 0;
+}
+.ProjCardActions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.ProjIconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.ProjIconBtn:hover { background: #f3f4f6; color: #111827; }
+.ProjIconBtnDanger:hover { background: #fff5f5; color: #dc2626; border-color: #fca5a5; }
+
+/* ── Stats row ───────────────────────────────────────────── */
+.ProjCardStats {
+  display: flex;
+  gap: 12px;
+}
+.ProjStat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #6b7280;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
+  padding: 4px 10px;
+}
+.ProjStatVal {
+  font-weight: 700;
+  color: #111827;
+}
+
+/* ── Inline edit ─────────────────────────────────────────── */
+.ProjCardEdit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ProjCardEditRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ── Empty ───────────────────────────────────────────────── */
+.ProjEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 64px 24px;
+  color: #9ca3af;
+  text-align: center;
+  background: #fff;
+  border: 1px dashed #d1d5db;
+  border-radius: 14px;
+}
+.ProjEmpty p { margin: 0; font-size: 14px; }
+
+/* ── Loading ─────────────────────────────────────────────── */
+.ProjLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 48px;
+  color: #9ca3af;
+}
+.ProjSpinner {
+  animation: proj-spin 0.8s linear infinite;
+}
+@keyframes proj-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .ProjGrid { grid-template-columns: 1fr; }
+  .ProjFormRow { flex-direction: column; }
+  .ProjFormField { min-width: 0; }
+}

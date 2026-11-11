@@ -1,0 +1,591 @@
+/* ── Integrations Page ───────────────────────────────────── */
+.IntPageShell {
+  background: #f5f6fa;
+  min-height: calc(100vh - 60px);
+  padding: 32px 32px 72px !important;
+}
+
+.IntPageHeader {
+  margin-bottom: 28px;
+}
+
+.IntSections {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Card ───────────────────────────────────────────────── */
+.IntCard {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.IntCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 24px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.IntCardTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.IntCardIcon { flex-shrink: 0; }
+.IntCardIconGreen { color: #16a34a; }
+.IntCardIconBlue  { color: #2563eb; }
+
+.IntBadge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+.IntBadgeGreen { background: #dcfce7; color: #166534; }
+.IntBadgeBlue  { background: #dbeafe; color: #1d4ed8; }
+
+.IntAddBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ce050d;
+  background: #fff5f5;
+  border: 1px solid rgba(206, 5, 13, 0.25);
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.IntAddBtn:hover { background: #fee2e2; border-color: #ce050d; }
+
+/* ── Form ───────────────────────────────────────────────── */
+.IntForm {
+  padding: 20px 24px;
+  background: #fafafa;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.IntFormRow {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.IntFormField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 2;
+  min-width: 220px;
+}
+.IntFormFieldSm { flex: 1; }
+
+.IntFormField label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.IntOptional {
+  font-weight: 400;
+  text-transform: none;
+  color: #9ca3af;
+}
+
+.IntInput {
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #111827;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.IntInput:focus { border-color: #ce050d; }
+
+.IntFieldHint {
+  font-size: 11px;
+  color: #9ca3af;
+  line-height: 1.4;
+}
+
+.IntError {
+  margin: 10px 0 0;
+  padding: 8px 12px;
+  background: #fff5f5;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #dc2626;
+}
+
+.IntFormActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  justify-content: flex-end;
+}
+
+.IntBtnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: #ce050d;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.IntBtnPrimary:hover:not(:disabled) { background: #a80409; }
+.IntBtnPrimary:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.IntBtnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.IntBtnSecondary:hover { background: #e5e7eb; }
+
+/* ── Webhook box ─────────────────────────────────────────── */
+.IntWebhookBox {
+  margin: 0 24px 0;
+  padding: 14px 16px;
+  background: #f8faff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  margin: 16px 24px;
+}
+
+.IntWebhookBoxTitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 8px;
+}
+
+.IntWebhookRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.IntWebhookMethod {
+  font-size: 11px;
+  font-weight: 700;
+  color: #6b7280;
+  background: #e5e7eb;
+  padding: 2px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.IntWebhookUrl,
+.IntWebhookToken {
+  font-size: 12px;
+  font-family: monospace;
+  background: #fff;
+  border: 1px solid #dbeafe;
+  padding: 3px 10px;
+  border-radius: 6px;
+  color: #1d4ed8;
+  word-break: break-all;
+}
+
+.IntWebhookLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  flex-shrink: 0;
+}
+
+.IntCopyBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #bfdbfe;
+  background: #fff;
+  color: #2563eb;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.IntCopyBtn:hover { background: #eff6ff; }
+
+/* ── Setup box ───────────────────────────────────────────── */
+.IntSetupBox {
+  margin: 0 24px 16px;
+  padding: 14px 16px;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 10px;
+}
+.IntSetupBoxTitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: #166534;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 8px;
+}
+.IntSetupSteps {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: #166534;
+  line-height: 1.8;
+}
+.IntSetupNote {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: #15803d;
+}
+
+/* ── Guide ───────────────────────────────────────────────── */
+.IntGuide {
+  padding: 0 24px 16px;
+}
+.IntGuideToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2563eb;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+}
+.IntGuideToggle:hover { color: #1d4ed8; }
+.IntGuideSteps {
+  margin: 10px 0 0;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #374151;
+  line-height: 1.9;
+}
+.IntGuideSteps code {
+  font-family: monospace;
+  background: #f3f4f6;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* ── Empty state ─────────────────────────────────────────── */
+.IntEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 36px 24px;
+  color: #9ca3af;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ── List ────────────────────────────────────────────────── */
+.IntList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.IntListItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 24px;
+  border-top: 1px solid #f3f4f6;
+}
+.IntListItem:first-child { border-top: 1px solid #f3f4f6; }
+
+.IntListItemMain { flex: 1; min-width: 0; }
+
+.IntListItemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.IntListItemName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.IntListItemMeta {
+  font-size: 12px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.IntListItemMeta code {
+  font-family: monospace;
+  font-size: 11px;
+  background: #f3f4f6;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.IntClientChip {
+  font-size: 11px;
+  font-weight: 600;
+  background: #fef9c3;
+  color: #854d0e;
+  padding: 1px 8px;
+  border-radius: 20px;
+}
+
+.IntColumnChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+.IntColChip {
+  font-size: 11px;
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #86efac;
+  padding: 1px 8px;
+  border-radius: 20px;
+}
+.IntColChipMore {
+  font-size: 11px;
+  color: #9ca3af;
+  padding: 1px 4px;
+}
+
+.IntSyncResult {
+  font-size: 11px;
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.IntListItemActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.IntBtnSync {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  padding: 6px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.IntBtnSync:hover:not(:disabled) { background: #e5e7eb; }
+.IntBtnSync:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.IntBtnDelete {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 7px;
+  border: 1px solid #fca5a5;
+  background: #fff5f5;
+  color: #dc2626;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.IntBtnDelete:hover:not(:disabled) { background: #fee2e2; }
+.IntBtnDelete:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Meta-specific ───────────────────────────────────────── */
+.IntStatusPill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 20px;
+}
+.IntStatusPillActive  { background: #dcfce7; color: #166534; }
+.IntStatusPillPaused  { background: #f3f4f6; color: #6b7280; }
+
+.IntMetaTag {
+  font-size: 11px;
+  font-weight: 500;
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 1px 8px;
+  border-radius: 20px;
+}
+
+.IntLeadCount {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.IntLogsLink {
+  padding: 10px 24px;
+  border-top: 1px solid #f3f4f6;
+  font-size: 13px;
+}
+.IntLogsLink a {
+  color: #ce050d;
+  font-weight: 600;
+  text-decoration: none;
+}
+.IntLogsLink a:hover { text-decoration: underline; }
+
+.IntMetaError {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 24px 0;
+  padding: 10px 14px;
+  background: #fff5f5;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #dc2626;
+}
+
+.IntMetaFormTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 14px;
+}
+
+.IntMetaConnectBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 0;
+}
+.IntMetaConnectBox p {
+  margin: 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.IntMetaConnectBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #1877f2;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.IntMetaConnectBtn:hover { background: #1565c0; }
+
+.IntMetaConnectNote {
+  font-size: 11px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.IntSelect {
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #111827;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+.IntSelect:focus { border-color: #ce050d; }
+.IntSelect:disabled { background: #f9fafb; color: #9ca3af; cursor: not-allowed; }
+
+.IntSelectLoading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #9ca3af;
+  height: 38px;
+}
+
+.IntBtnToggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 7px;
+  border: 1px solid #d1d5db;
+  background: #f3f4f6;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.IntBtnToggle:hover:not(:disabled) { background: #e5e7eb; }
+.IntBtnToggle:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Spinner ─────────────────────────────────────────────── */
+.IntSpinner {
+  animation: int-spin 0.8s linear infinite;
+}
+@keyframes int-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .IntCardHeader { flex-wrap: wrap; gap: 10px; }
+  .IntFormRow { flex-direction: column; }
+  .IntFormField, .IntFormFieldSm { min-width: 0; }
+  .IntListItem { flex-direction: column; align-items: flex-start; }
+  .IntListItemActions { width: 100%; justify-content: flex-end; }
+}
