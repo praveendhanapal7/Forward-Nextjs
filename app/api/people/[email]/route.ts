@@ -41,7 +41,7 @@ export async function PATCH(
 
     const result = await prisma.user.update({
       where: { email: targetEmail },
-      data: { permissions: updated },
+      data: { permissions: updated as Record<string, boolean> },
       select: { email: true, name: true, accountType: true, brandName: true, permissions: true },
     });
 
