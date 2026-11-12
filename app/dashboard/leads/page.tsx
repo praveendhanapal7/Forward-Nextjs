@@ -8,7 +8,6 @@ import {
   ChevronUp,
   ChevronDown,
   ChevronsUpDown,
-  ExternalLink,
   CalendarPlus,
   CheckCircle2,
   Pencil,
@@ -196,6 +195,7 @@ interface Lead {
   notes?: string | null;
   log?: string | null;
   source?: string | null;
+  projectId?: string | null;
   data?: Record<string, string> | null;
 }
 
@@ -331,6 +331,8 @@ export default function DashboardPage() {
   const [sortDir, setSortDir] = useState<SortDir>("asc");
   const [projectFilter, setProjectFilter] = useState("");
   const [projects, setProjects] = useState<{ id: string; name: string }[]>([]);
+
+  const projectMap = useMemo(() => new Map(projects.map((p) => [p.id, p.name])), [projects]);
 
   const localLeadCountRef = useRef<number | null>(null);
 
@@ -1225,7 +1227,7 @@ export default function DashboardPage() {
                           </button>
                         </th>
                         <th>Source</th>
-                        <th>Link</th>
+                        <th>Project</th>
                         {isAgency && <th>Brand</th>}
                         <th>Added By</th>
                         <th>
@@ -1297,20 +1299,10 @@ export default function DashboardPage() {
                             )}
                           </td>
                           <td>
-                            {lead.link ? (
-                              <a
-                                href={lead.link}
-                                target="_blank"
-                                rel="noreferrer"
-                                style={{
-                                  color: "#055cce",
-                                  display: "inline-flex",
-                                  alignItems: "center",
-                                  gap: 4,
-                                }}
-                              >
-                                Link <ExternalLink size={12} />
-                              </a>
+                            {lead.projectId && projectMap.get(lead.projectId) ? (
+                              <span style={{ fontSize: 12, fontWeight: 600, background: "#f3e8ff", color: "#7c3aed", padding: "2px 8px", borderRadius: 20, whiteSpace: "nowrap" }}>
+                                {projectMap.get(lead.projectId)}
+                              </span>
                             ) : (
                               <span style={{ color: "#9ca3af" }}>—</span>
                             )}
@@ -1525,15 +1517,10 @@ export default function DashboardPage() {
                       <span className="LeadCardMeta">
                         Added by {lead.addedBy || "Unknown"}
                       </span>
-                      {lead.link && (
-                        <a
-                          href={lead.link}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="LeadCardLink"
-                        >
-                          Link <ExternalLink size={12} />
-                        </a>
+                      {lead.projectId && projectMap.get(lead.projectId) && (
+                        <span style={{ fontSize: 11, fontWeight: 600, background: "#f3e8ff", color: "#7c3aed", padding: "2px 8px", borderRadius: 20 }}>
+                          {projectMap.get(lead.projectId)}
+                        </span>
                       )}
                     </div>
                     <div className="VSLeadAction LeadCardVSAction">
