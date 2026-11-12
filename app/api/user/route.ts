@@ -55,7 +55,13 @@ export async function POST(request: Request) {
           { status: 400 },
         );
       }
-      resolvedBrandName = accessModel.brandName;
+      // Inherit brandName from an existing user with the same key so all accounts
+      // under one access code share the same brandName (and therefore see the same leads).
+      const peer = await prisma.user.findFirst({
+        where: { secretKey: keyHash },
+        select: { brandName: true },
+      });
+      resolvedBrandName = peer?.brandName ?? accessModel.brandName;
     }
 
     const finalAccountType = normalizeAccountType(accountType, resolvedBrandName);
