@@ -27,6 +27,7 @@ import "@/styles/Pages.css";
 
 const LEAD_REFRESH_INTERVAL_MS = 20000;
 const LEAD_COUNT_POLL_INTERVAL_MS = 20000;
+const META_SYNC_INTERVAL_MS = 10 * 60 * 1000; // 10 minutes
 const VS_DISPLAY_LIMIT = 10;
 
 const STATUS_ORDER = [
@@ -373,6 +374,14 @@ export default function DashboardPage() {
       clearInterval(timer);
     };
   }, [user, fetchLeads]);
+
+  // Silently sync Meta leads every 10 minutes while the dashboard is open
+  useEffect(() => {
+    if (!user) return;
+    const syncMeta = () => fetch("/api/cron/sync-meta").catch(() => {});
+    const timer = setInterval(syncMeta, META_SYNC_INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, [user]);
 
   useEffect(() => {
     if (!user || !isAgency) return;
