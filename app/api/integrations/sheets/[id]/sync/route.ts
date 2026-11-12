@@ -2,6 +2,8 @@ import { resolveUser, isAgency } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { fetchSheetRows } from "../../route";
 
+export const maxDuration = 60;
+
 // POST /api/integrations/sheets/[id]/sync — import / re-sync all rows from the sheet
 export async function POST(
   _request: Request,
@@ -33,6 +35,16 @@ export async function POST(
     let created = 0;
     let skipped = 0;
 
+    // Build all externalIds for this source upfront, then fetch existing ones in one query
+    const allExternalIds = data.rows.map((_, i) => `sheet_${source.id}_row_${i + 2}`);
+    const existingLeads = await prisma.lead.findMany({
+      where: { externalId: { in: allExternalIds } },
+      select: { externalId: true, projectId: true, status: true, notes: true },
+    });
+    const existingMap = new Map(existingLeads.map((l) => [l.externalId, l]));
+
+    const toCreate: Parameters<typeof prisma.lead.create>[0]["data"][] = [];
+
     for (let i = 0; i < data.rows.length; i++) {
       const row = data.rows[i];
       const externalId = `sheet_${source.id}_row_${i + 2}`; // row 1 = header
@@ -42,7 +54,7 @@ export async function POST(
       const sheetStatus = normalizeStatus(findField(row, ["status"]));
       const sheetNotes = findField(row, ["other details", "notes", "note", "remarks", "comment"]);
 
-      const existing = await prisma.lead.findUnique({ where: { externalId } });
+      const existing = existingMap.get(externalId);
       if (existing) {
         const updates: Record<string, unknown> = {};
         if (source.projectId && !existing.projectId) updates.projectId = source.projectId;
@@ -55,24 +67,27 @@ export async function POST(
         continue;
       }
 
-      await prisma.lead.create({
-        data: {
-          source: "google_sheets",
-          sourceId: source.id,
-          externalId,
-          clientName: source.clientName ?? null,
-          phoneNumber: phone ?? null,
-          enquiryEntry: now,
-          addedBy: `Google Sheet import`,
-          status: sheetStatus ?? "NEW",
-          requirements: name ?? null,
-          notes: sheetNotes ?? null,
-          data: row,
-          log: `[${now}] Imported from Google Sheet "${source.name}" row ${i + 2}`,
-          ...(source.projectId && { projectId: source.projectId }),
-        },
+      toCreate.push({
+        source: "google_sheets",
+        sourceId: source.id,
+        externalId,
+        clientName: source.clientName ?? null,
+        phoneNumber: phone ?? null,
+        enquiryEntry: now,
+        addedBy: `Google Sheet import`,
+        status: sheetStatus ?? "NEW",
+        requirements: name ?? null,
+        notes: sheetNotes ?? null,
+        data: row,
+        log: `[${now}] Imported from Google Sheet "${source.name}" row ${i + 2}`,
+        ...(source.projectId && { projectId: source.projectId }),
       });
-      created++;
+    }
+
+    // Batch insert all new leads in one query
+    if (toCreate.length > 0) {
+      await prisma.lead.createMany({ data: toCreate as never[], skipDuplicates: true });
+      created = toCreate.length;
     }
 
     // Update source with latest columns + sync time
