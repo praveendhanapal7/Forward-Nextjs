@@ -39,8 +39,22 @@ export async function GET(request: Request) {
 
     if (baseWhere === null) return Response.json([]);
 
+    // Staff with assigned projects: restrict to those projects only
+    let projectFilter: { projectId?: string | { in: string[] } } = {};
+    if (!isAgency(user) && user.accountType === "staff") {
+      const assignments = await prisma.userProject.findMany({
+        where: { userEmail: user.email },
+        select: { projectId: true },
+      });
+      if (assignments.length > 0) {
+        const allowedIds = assignments.map((a) => a.projectId);
+        projectFilter = { projectId: { in: allowedIds } };
+      }
+    }
+
     const where = {
       ...baseWhere,
+      ...projectFilter,
       ...(projectId && { projectId }),
     };
 

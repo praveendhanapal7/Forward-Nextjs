@@ -17,10 +17,13 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/components/auth/AuthContext";
 
-const navItems = [
+const baseNavItems = [
   { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
   { label: "Leads", href: "/dashboard/leads", icon: Users },
   { label: "Projects", href: "/dashboard/projects", icon: FolderOpen },
+];
+
+const ownerOnlyNavItems = [
   { label: "Integrations", href: "/dashboard/integrations", icon: Link2 },
   { label: "Logs", href: "/dashboard/logs", icon: Activity },
 ];
@@ -110,12 +113,24 @@ export function Sidebar({
         </div>
 
         <nav className="DashSidebarNav">
-          {navItems.map(({ label, href, icon: Icon }) => (
+          {baseNavItems.map(({ label, href, icon: Icon }) => (
             <Link
               key={href}
               href={href}
               onClick={onMobileClose}
               className={`DashSidebarLink ${pathname === href || (href !== "/dashboard" && pathname.startsWith(href)) ? "DashSidebarLinkActive" : ""}`}
+              title={collapsed ? label : undefined}
+            >
+              <Icon size={18} strokeWidth={2} />
+              {!collapsed && <span>{label}</span>}
+            </Link>
+          ))}
+          {isOwner && ownerOnlyNavItems.map(({ label, href, icon: Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              onClick={onMobileClose}
+              className={`DashSidebarLink ${pathname.startsWith(href) ? "DashSidebarLinkActive" : ""}`}
               title={collapsed ? label : undefined}
             >
               <Icon size={18} strokeWidth={2} />

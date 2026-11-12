@@ -30,6 +30,12 @@ export async function GET() {
           take: 1,
           select: { createdAt: true },
         },
+        assignedProjects: {
+          select: {
+            projectId: true,
+            project: { select: { id: true, name: true } },
+          },
+        },
       },
       orderBy: { email: "asc" },
     });

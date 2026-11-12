@@ -11,6 +11,11 @@ interface PersonPermissions {
   canDeleteLeads?: boolean;
 }
 
+interface AssignedProject {
+  projectId: string;
+  project: { id: string; name: string };
+}
+
 interface Person {
   email: string;
   name: string | null;
@@ -19,6 +24,12 @@ interface Person {
   brandName: string | null;
   permissions: PersonPermissions | null;
   sessions: { createdAt: string }[];
+  assignedProjects: AssignedProject[];
+}
+
+interface Project {
+  id: string;
+  name: string;
 }
 
 interface ActivityEntry {
@@ -78,12 +89,14 @@ function formatRelativeTime(dateStr: string) {
 export default function PeoplePage() {
   const { user } = useAuth();
   const [people, setPeople] = useState<Person[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [activities, setActivities] = useState<ActivityEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [activityLoading, setActivityLoading] = useState(true);
   const [error, setError] = useState("");
   const [deletingEmail, setDeletingEmail] = useState<string | null>(null);
   const [updatingEmail, setUpdatingEmail] = useState<string | null>(null);
+  const [assigningEmail, setAssigningEmail] = useState<string | null>(null);
   const [toast, setToast] = useState<{ type: "success" | "error"; msg: string } | null>(null);
 
   const showToast = (type: "success" | "error", msg: string) => {
@@ -94,8 +107,12 @@ export default function PeoplePage() {
   const loadPeople = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await apiFetch("/api/people");
-      setPeople(Array.isArray(data) ? (data as Person[]) : []);
+      const [peopleData, projectsData] = await Promise.all([
+        apiFetch("/api/people"),
+        apiFetch("/api/projects"),
+      ]);
+      setPeople(Array.isArray(peopleData) ? (peopleData as Person[]) : []);
+      setProjects(Array.isArray(projectsData) ? (projectsData as Project[]) : []);
       setError("");
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Unable to load team members.");
@@ -152,6 +169,22 @@ export default function PeoplePage() {
       showToast("error", err instanceof ApiError ? err.message : "Failed to delete account.");
     } finally {
       setDeletingEmail(null);
+    }
+  };
+
+  const assignProjects = async (email: string, projectIds: string[]) => {
+    setAssigningEmail(email);
+    try {
+      const updated = (await apiFetch(`/api/people/${encodeURIComponent(email)}/projects`, {
+        method: "PUT",
+        body: { projectIds },
+      })) as Pick<Person, "email" | "assignedProjects">;
+      setPeople((prev) => prev.map((p) => p.email === email ? { ...p, assignedProjects: updated.assignedProjects } : p));
+      showToast("success", "Project assignments updated.");
+    } catch (err) {
+      showToast("error", err instanceof ApiError ? err.message : "Failed to update project assignments.");
+    } finally {
+      setAssigningEmail(null);
     }
   };
 
@@ -297,6 +330,45 @@ export default function PeoplePage() {
                       {person.brandName && ` · ${person.brandName}`}
                     </div>
                   </div>
+
+                  {/* Project assignments — only for staff */}
+                  {!isMe && person.accountType === "staff" && projects.length > 0 && (
+                    <div style={{ minWidth: 220 }}>
+                      <div style={{ fontSize: 11, fontWeight: 600, color: "#6b7280", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                        Assigned Projects
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                        {projects.map((proj) => {
+                          const assigned = person.assignedProjects?.some((ap) => ap.projectId === proj.id) ?? false;
+                          const busy = assigningEmail === person.email;
+                          return (
+                            <label
+                              key={proj.id}
+                              style={{ display: "flex", alignItems: "center", gap: 8, cursor: busy ? "not-allowed" : "pointer", fontSize: 13 }}
+                            >
+                              <input
+                                type="checkbox"
+                                checked={assigned}
+                                disabled={busy}
+                                onChange={(e) => {
+                                  const current = person.assignedProjects?.map((ap) => ap.projectId) ?? [];
+                                  const next = e.target.checked
+                                    ? [...current, proj.id]
+                                    : current.filter((id) => id !== proj.id);
+                                  assignProjects(person.email, next);
+                                }}
+                                style={{ accentColor: "#2563eb", width: 15, height: 15 }}
+                              />
+                              <span style={{ color: "#374151" }}>{proj.name}</span>
+                            </label>
+                          );
+                        })}
+                        {person.assignedProjects?.length === 0 && (
+                          <span style={{ fontSize: 11, color: "#9ca3af" }}>No projects assigned — sees all brand leads</span>
+                        )}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Permissions (not for self) */}
                   {!isMe && (

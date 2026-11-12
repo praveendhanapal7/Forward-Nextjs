@@ -7,16 +7,17 @@ datasource db {
 }
 
 model User {
-  email       String         @id
-  name        String?        @map("full_name")
-  phoneNumber String?        @map("phone_number")
-  location    String?
-  accountType String?        @map("account_type")
-  brandName   String?        @map("brand_name")
-  password    String
-  secretKey   String         @map("secret_key")
-  permissions Json?          // { isActive: boolean, canDeleteLeads: boolean }
-  sessions    UserSession[]
+  email            String         @id
+  name             String?        @map("full_name")
+  phoneNumber      String?        @map("phone_number")
+  location         String?
+  accountType      String?        @map("account_type")
+  brandName        String?        @map("brand_name")
+  password         String
+  secretKey        String         @map("secret_key")
+  permissions      Json?          // { isActive: boolean, canDeleteLeads: boolean }
+  sessions         UserSession[]
+  assignedProjects UserProject[]
 
   @@map("users")
 }
@@ -73,18 +74,29 @@ model LeadSource {
 }
 
 model Project {
-  id          String    @id @default(cuid())
+  id          String        @id @default(cuid())
   name        String
-  description String?   @db.Text
-  createdBy   String?   @map("created_by")
-  createdAt   DateTime  @default(now()) @map("created_at")
-  updatedAt   DateTime  @updatedAt @map("updated_at")
+  description String?       @db.Text
+  createdBy   String?       @map("created_by")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
 
-  integrations MetaIntegration[]
-  sources      LeadSource[]
-  leads        Lead[]
+  integrations   MetaIntegration[]
+  sources        LeadSource[]
+  leads          Lead[]
+  assignedUsers  UserProject[]
 
   @@map("projects")
+}
+
+model UserProject {
+  userEmail  String  @map("user_email")
+  projectId  String  @map("project_id")
+  user       User    @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  project    Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@id([userEmail, projectId])
+  @@map("user_projects")
 }
 
 model MetaIntegration {
