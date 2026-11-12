@@ -20,6 +20,10 @@ export async function resolveUser() {
     return null;
   }
 
+  // Suspended accounts are treated as unauthenticated
+  const perms = session.user.permissions as { isActive?: boolean } | null;
+  if (perms && perms.isActive === false) return null;
+
   return session.user;
 }
 

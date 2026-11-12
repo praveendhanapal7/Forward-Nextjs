@@ -42,6 +42,16 @@ export async function POST(request: Request) {
       data: { notes, log: newLog },
     });
 
+    await prisma.leadActivity.create({
+      data: {
+        leadId: id,
+        userEmail: user.email,
+        userName: actor,
+        action: "note_saved",
+        details: action,
+      },
+    }).catch(() => {});
+
     return Response.json(updated);
   } catch {
     return Response.json({ message: "Something went wrong" }, { status: 500 });

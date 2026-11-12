@@ -49,6 +49,16 @@ export async function PUT(
       data: { status: parsed.data.status, log: newLog },
     });
 
+    await prisma.leadActivity.create({
+      data: {
+        leadId,
+        userEmail: user.email,
+        userName: actor,
+        action: "status_changed",
+        details: `Status changed to ${parsed.data.status}`,
+      },
+    }).catch(() => {});
+
     return Response.json(updated);
   } catch {
     return Response.json({ message: "Something went wrong" }, { status: 500 });

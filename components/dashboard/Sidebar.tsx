@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   Users,
+  UserCog,
   LogOut,
   ChevronLeft,
   ChevronRight,
@@ -24,6 +25,10 @@ const navItems = [
   { label: "Logs", href: "/dashboard/logs", icon: Activity },
 ];
 
+const ownerNavItems = [
+  { label: "People", href: "/dashboard/people", icon: UserCog },
+];
+
 interface SidebarProps {
   collapsed: boolean;
   mobileOpen: boolean;
@@ -40,7 +45,8 @@ export function Sidebar({
 }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, signOut } = useAuth();
+  const { user, signOut, isAgency } = useAuth();
+  const isOwner = user?.accountType === "client" || isAgency;
 
   const handleSignOut = async () => {
     onMobileClose();
@@ -110,6 +116,18 @@ export function Sidebar({
               href={href}
               onClick={onMobileClose}
               className={`DashSidebarLink ${pathname === href || (href !== "/dashboard" && pathname.startsWith(href)) ? "DashSidebarLinkActive" : ""}`}
+              title={collapsed ? label : undefined}
+            >
+              <Icon size={18} strokeWidth={2} />
+              {!collapsed && <span>{label}</span>}
+            </Link>
+          ))}
+          {isOwner && ownerNavItems.map(({ label, href, icon: Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              onClick={onMobileClose}
+              className={`DashSidebarLink ${pathname.startsWith(href) ? "DashSidebarLinkActive" : ""}`}
               title={collapsed ? label : undefined}
             >
               <Icon size={18} strokeWidth={2} />

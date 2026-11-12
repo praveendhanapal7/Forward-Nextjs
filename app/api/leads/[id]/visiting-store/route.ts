@@ -57,6 +57,16 @@ export async function PUT(
       },
     });
 
+    await prisma.leadActivity.create({
+      data: {
+        leadId,
+        userEmail: user.email,
+        userName: actor,
+        action: "visit_assigned",
+        details: `Visiting Store scheduled for ${parsed.data.visitingStoreDate}`,
+      },
+    }).catch(() => {});
+
     return Response.json(updated);
   } catch {
     return Response.json({ message: "Something went wrong" }, { status: 500 });
@@ -95,6 +105,16 @@ export async function DELETE(
         log: appendVisitLog(lead.log, "Removed from Visiting Store schedule", actor),
       },
     });
+
+    await prisma.leadActivity.create({
+      data: {
+        leadId,
+        userEmail: user.email,
+        userName: actor,
+        action: "visit_removed",
+        details: "Removed from Visiting Store schedule",
+      },
+    }).catch(() => {});
 
     return Response.json(updated);
   } catch {
