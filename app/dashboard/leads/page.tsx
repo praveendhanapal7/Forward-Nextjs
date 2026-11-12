@@ -375,10 +375,11 @@ export default function DashboardPage() {
     };
   }, [user, fetchLeads]);
 
-  // Silently sync Meta leads every 10 minutes while the dashboard is open
+  // Sync Meta leads immediately on open, then every 10 minutes
   useEffect(() => {
     if (!user) return;
     const syncMeta = () => fetch("/api/cron/sync-meta").catch(() => {});
+    syncMeta();
     const timer = setInterval(syncMeta, META_SYNC_INTERVAL_MS);
     return () => clearInterval(timer);
   }, [user]);
