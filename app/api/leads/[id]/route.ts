@@ -24,7 +24,8 @@ export async function DELETE(
     const lead = await prisma.lead.findUnique({ where: { id: leadId } });
     if (!lead) return Response.json({ message: "Lead not found" }, { status: 404 });
 
-    if (!isAgency(user) && lead.clientName !== user.brandName) {
+    const normalize = (s: string | null | undefined) => (s ?? "").replace(/\s+/g, "").toLowerCase();
+    if (!isAgency(user) && normalize(lead.clientName) !== normalize(user.brandName)) {
       return Response.json({ message: "Forbidden" }, { status: 403 });
     }
 
