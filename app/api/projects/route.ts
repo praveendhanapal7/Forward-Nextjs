@@ -1,9 +1,18 @@
-import { resolveUser } from "@/lib/auth";
+import { resolveUser, isAgency } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   const user = await resolveUser();
   if (!user) return Response.json({ message: "Unauthorized" }, { status: 401 });
+
+  // Staff: only return their assigned projects
+  if (!isAgency(user) && user.accountType === "staff") {
+    const assignments = await prisma.userProject.findMany({
+      where: { userEmail: user.email },
+      select: { project: { include: { _count: { select: { integrations: true, sources: true } } } } },
+    });
+    return Response.json(assignments.map((a) => a.project));
+  }
 
   const projects = await prisma.project.findMany({
     orderBy: { createdAt: "desc" },
