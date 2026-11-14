@@ -49,10 +49,14 @@ export async function GET(request: Request) {
       }
     }
 
+    // Match clientName with or without internal spaces (handles "Real Value" vs "RealValue")
+    const clientNameFilter = user.brandName
+      ? { in: [user.brandName, user.brandName.replace(/\s+/g, "")] }
+      : undefined;
     const baseWhere = isAgency(user)
       ? {}
-      : user.brandName
-        ? { clientName: user.brandName }
+      : clientNameFilter
+        ? { clientName: clientNameFilter }
         : null;
 
     if (baseWhere === null) return Response.json([]);
