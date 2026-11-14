@@ -31,22 +31,20 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const projectId = searchParams.get("projectId") ?? undefined;
 
-    // For staff: leads visible if they belong to an assigned project (clientName-agnostic)
-    // For other non-agency: filter by clientName only
+    // Staff: only see leads from assigned projects; no assignments = no leads
     if (!isAgency(user) && user.accountType === "staff") {
       const assignments = await prisma.userProject.findMany({
         where: { userEmail: user.email },
         select: { projectId: true },
       });
-      if (assignments.length > 0) {
-        const allowedIds = assignments.map((a) => a.projectId);
-        const where = {
-          projectId: { in: allowedIds },
-          ...(projectId && { projectId }),
-        };
-        const leads = await prisma.lead.findMany({ where, orderBy: { id: "desc" } });
-        return Response.json(leads);
-      }
+      if (assignments.length === 0) return Response.json([]);
+      const allowedIds = assignments.map((a) => a.projectId);
+      const where = {
+        projectId: { in: allowedIds },
+        ...(projectId && { projectId }),
+      };
+      const leads = await prisma.lead.findMany({ where, orderBy: { id: "desc" } });
+      return Response.json(leads);
     }
 
     // Match clientName with or without internal spaces (handles "Real Value" vs "RealValue")
