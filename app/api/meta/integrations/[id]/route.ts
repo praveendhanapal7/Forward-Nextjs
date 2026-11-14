@@ -1,4 +1,4 @@
-import { resolveUser } from "@/lib/auth";
+import { resolveUser, isAgency } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 export async function PATCH(
@@ -10,13 +10,14 @@ export async function PATCH(
 
   const { id } = await params;
   const body = await request.json().catch(() => null);
-  const { status, name } = body ?? {};
+  const { status, name, clientName } = body ?? {};
 
   const integration = await prisma.metaIntegration.update({
     where: { id },
     data: {
       ...(status !== undefined && { status }),
       ...(name !== undefined && { name }),
+      ...(clientName !== undefined && isAgency(user) && { clientName }),
     },
   });
 
