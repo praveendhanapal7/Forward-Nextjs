@@ -38,7 +38,15 @@ export async function POST(
   for (const lead of leads) {
     const externalId = `meta_${lead.id}`;
     const existing = await prisma.lead.findUnique({ where: { externalId } });
-    if (existing) { skipped++; continue; }
+    if (existing) {
+      // Re-sync clientName if the integration's clientName has changed
+      const integrationClientName = integration.clientName ?? integration.pageName ?? null;
+      if (existing.clientName !== integrationClientName) {
+        await prisma.lead.update({ where: { externalId }, data: { clientName: integrationClientName } });
+      }
+      skipped++;
+      continue;
+    }
 
     const dynamicData: Record<string, string> = {};
     let phone: string | null = null;

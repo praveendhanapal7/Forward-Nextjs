@@ -12,12 +12,15 @@ export async function PATCH(
   const body = await request.json().catch(() => null);
   const { status, name, clientName } = body ?? {};
 
+  const existing = await prisma.metaIntegration.findUnique({ where: { id }, select: { createdBy: true } });
+  const canEditClientName = isAgency(user) || existing?.createdBy === user.email;
+
   const integration = await prisma.metaIntegration.update({
     where: { id },
     data: {
       ...(status !== undefined && { status }),
       ...(name !== undefined && { name }),
-      ...(clientName !== undefined && isAgency(user) && { clientName }),
+      ...(clientName !== undefined && canEditClientName && { clientName }),
     },
   });
 
