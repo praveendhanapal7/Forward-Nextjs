@@ -1584,6 +1584,20 @@ export default function DashboardPage() {
                       </span>
                     </div>
                     <p className="LeadCardReq">{lead.requirements}</p>
+                    {lead.data && Object.keys(lead.data).length > 0 && (
+                      <details style={{ marginTop: 4, marginBottom: 4 }}>
+                        <summary style={{ fontSize: 11, color: "#6b7280", cursor: "pointer" }}>
+                          {Object.keys(lead.data).length} extra fields
+                        </summary>
+                        <div style={{ marginTop: 6, display: "flex", flexWrap: "wrap", gap: 4 }}>
+                          {Object.entries(lead.data).map(([k, v]) => (
+                            <span key={k} style={{ fontSize: 11, background: "#f3f4f6", padding: "2px 6px", borderRadius: 4 }}>
+                              <strong>{k}:</strong> {v || "—"}
+                            </span>
+                          ))}
+                        </div>
+                      </details>
+                    )}
                     <div className="LeadCardRow">
                       <span className="LeadCardMeta">{lead.enquiryEntry}</span>
                       {isAgency && (
