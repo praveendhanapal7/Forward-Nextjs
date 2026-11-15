@@ -1,4 +1,4 @@
-import { resolveUser } from "@/lib/auth";
+import { resolveUser, isAgency } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { cookies } from "next/headers";
 
@@ -105,7 +105,10 @@ export async function POST(request: Request) {
     // Best-effort — continue even if subscription call fails
   }
 
-  const resolvedClientName = clientName?.trim() || null;
+  // Non-agency users always get their own brandName — prevents clientName mismatches
+  const resolvedClientName = isAgency(user)
+    ? (clientName?.trim() || null)
+    : (user.brandName ?? null);
 
   const integration = await prisma.metaIntegration.upsert({
     where: { formId },
