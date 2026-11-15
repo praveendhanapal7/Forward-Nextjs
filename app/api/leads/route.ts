@@ -39,10 +39,11 @@ export async function GET(request: Request) {
       });
       if (assignments.length === 0) return Response.json([]);
       const allowedIds = assignments.map((a) => a.projectId);
-      const where = {
-        projectId: { in: allowedIds },
-        ...(projectId && { projectId }),
-      };
+      // If filtering by a specific project, ensure it's in the staff's allowed list
+      const filteredIds = projectId
+        ? allowedIds.filter((id) => id === projectId)
+        : allowedIds;
+      const where = { projectId: { in: filteredIds } };
       const leads = await prisma.lead.findMany({ where, orderBy: { id: "desc" } });
       return Response.json(leads);
     }
