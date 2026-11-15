@@ -1342,7 +1342,7 @@ export default function DashboardPage() {
                           <td>
                             <div className="LeadActionGroup">
                               <a
-                                href={`tel:${(lead.phoneNumber || "").replace(/[^\d+]/g, "")}`}
+                                href={(() => { const n = (lead.phoneNumber || "").replace(/[^\d+]/g, ""); return `tel:${n.startsWith("+") ? n : "+91" + n.slice(-10)}`; })()}
                                 aria-label={`Call ${lead.phoneNumber}`}
                                 title="Call"
                                 style={actionBtn("#111827")}
@@ -1632,7 +1632,7 @@ export default function DashboardPage() {
                     )}
                     <div className="LeadCardBottomActions">
                       <a
-                        href={`tel:${(lead.phoneNumber || "").replace(/[^\d+]/g, "")}`}
+                        href={(() => { const n = (lead.phoneNumber || "").replace(/[^\d+]/g, ""); return `tel:${n.startsWith("+") ? n : "+91" + n.slice(-10)}`; })()}
                         title="Call"
                         style={actionBtn("#111827")}
                         onClick={() => markLeadAttendedFromContact(lead)}

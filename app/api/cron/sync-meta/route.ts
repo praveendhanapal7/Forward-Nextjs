@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { formatPhoneNumber } from "@/lib/phone";
 
 export const maxDuration = 60;
 
@@ -60,9 +61,11 @@ export async function GET(request: Request) {
           if (field.name === "full_name" || field.name === "first_name") name = val;
         }
 
-        if (phone) {
+        const formattedPhone = formatPhoneNumber(phone);
+
+        if (formattedPhone) {
           const phoneExists = await prisma.lead.findFirst({
-            where: { phoneNumber: phone, clientName: integration.clientName ?? integration.pageName ?? null },
+            where: { phoneNumber: formattedPhone, clientName: integration.clientName ?? integration.pageName ?? null },
             select: { id: true },
           });
           if (phoneExists) { skipped++; continue; }
@@ -77,7 +80,7 @@ export async function GET(request: Request) {
           data: {
             source: "meta",
             externalId,
-            phoneNumber: phone,
+            phoneNumber: formattedPhone,
             clientName: integration.clientName ?? integration.pageName ?? null,
             requirements: name ?? null,
             enquiryEntry: entryDate,

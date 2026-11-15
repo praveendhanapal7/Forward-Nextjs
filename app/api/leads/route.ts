@@ -1,13 +1,7 @@
 import { resolveUser, isAgency } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { LeadSchema } from "@/lib/schemas";
-
-function formatPhoneNumber(raw: string | null | undefined): string | null {
-  if (!raw) return raw ?? null;
-  const cleaned = raw.replace(/\s/g, "");
-  if (cleaned.length < 10) return raw;
-  return "+91" + cleaned.slice(-10);
-}
+import { formatPhoneNumber } from "@/lib/phone";
 
 function appendAuditLog(current: string | null | undefined, action: string, actor: string): string {
   const time = new Date().toLocaleString("en-IN", {

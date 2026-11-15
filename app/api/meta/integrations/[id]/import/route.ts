@@ -1,5 +1,6 @@
 import { resolveUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { formatPhoneNumber } from "@/lib/phone";
 
 export async function POST(
   _request: Request,
@@ -59,9 +60,11 @@ export async function POST(
       if (field.name === "full_name" || field.name === "first_name") name = val;
     }
 
-    if (phone) {
+    const formattedPhone = formatPhoneNumber(phone);
+
+    if (formattedPhone) {
       const phoneExists = await prisma.lead.findFirst({
-        where: { phoneNumber: phone, clientName: integration.clientName ?? integration.pageName ?? null },
+        where: { phoneNumber: formattedPhone, clientName: integration.clientName ?? integration.pageName ?? null },
         select: { id: true },
       });
       if (phoneExists) { skipped++; continue; }
@@ -78,7 +81,7 @@ export async function POST(
       data: {
         source: "meta",
         externalId,
-        phoneNumber: phone,
+        phoneNumber: formattedPhone,
         clientName: integration.clientName ?? integration.pageName ?? null,
         requirements: name ?? null,
         enquiryEntry: entryDate,
