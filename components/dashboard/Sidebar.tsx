@@ -20,11 +20,16 @@ import { useAuth } from "@/components/auth/AuthContext";
 const baseNavItems = [
   { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
   { label: "Leads", href: "/dashboard/leads", icon: Users },
-  { label: "Projects", href: "/dashboard/projects", icon: FolderOpen },
 ];
 
-const ownerOnlyNavItems = [
+// Shown to staff + owner (client/agency)
+const staffAndOwnerNavItems = [
   { label: "Integrations", href: "/dashboard/integrations", icon: Link2 },
+];
+
+// Owner (client/agency) only — not staff
+const ownerOnlyNavItems = [
+  { label: "Projects", href: "/dashboard/projects", icon: FolderOpen },
   { label: "Logs", href: "/dashboard/logs", icon: Activity },
 ];
 
@@ -50,6 +55,7 @@ export function Sidebar({
   const router = useRouter();
   const { user, signOut, isAgency } = useAuth();
   const isOwner = user?.accountType === "client" || isAgency;
+  const isStaff = user?.accountType === "staff";
 
   const handleSignOut = async () => {
     onMobileClose();
@@ -119,6 +125,18 @@ export function Sidebar({
               href={href}
               onClick={onMobileClose}
               className={`DashSidebarLink ${pathname === href || (href !== "/dashboard" && pathname.startsWith(href)) ? "DashSidebarLinkActive" : ""}`}
+              title={collapsed ? label : undefined}
+            >
+              <Icon size={18} strokeWidth={2} />
+              {!collapsed && <span>{label}</span>}
+            </Link>
+          ))}
+          {(isOwner || isStaff) && staffAndOwnerNavItems.map(({ label, href, icon: Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              onClick={onMobileClose}
+              className={`DashSidebarLink ${pathname.startsWith(href) ? "DashSidebarLinkActive" : ""}`}
               title={collapsed ? label : undefined}
             >
               <Icon size={18} strokeWidth={2} />

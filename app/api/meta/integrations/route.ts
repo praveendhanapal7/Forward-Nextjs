@@ -2,27 +2,45 @@ import { resolveUser, isAgency } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { cookies } from "next/headers";
 
+const integrationSelect = {
+  id: true,
+  name: true,
+  clientName: true,
+  pageId: true,
+  pageName: true,
+  formId: true,
+  formName: true,
+  status: true,
+  projectId: true,
+  project: { select: { id: true, name: true } },
+  createdAt: true,
+  createdBy: true,
+  _count: { select: { logs: true } },
+} as const;
+
 export async function GET() {
   const user = await resolveUser();
   if (!user) return Response.json({ message: "Unauthorized" }, { status: 401 });
 
+  // Staff: only see integrations linked to their assigned projects
+  if (!isAgency(user) && user.accountType === "staff") {
+    const assignments = await prisma.userProject.findMany({
+      where: { userEmail: user.email },
+      select: { projectId: true },
+    });
+    if (assignments.length === 0) return Response.json([]);
+    const allowedIds = assignments.map((a) => a.projectId);
+    const integrations = await prisma.metaIntegration.findMany({
+      where: { projectId: { in: allowedIds } },
+      orderBy: { createdAt: "desc" },
+      select: integrationSelect,
+    });
+    return Response.json(integrations);
+  }
+
   const integrations = await prisma.metaIntegration.findMany({
     orderBy: { createdAt: "desc" },
-    select: {
-      id: true,
-      name: true,
-      clientName: true,
-      pageId: true,
-      pageName: true,
-      formId: true,
-      formName: true,
-      status: true,
-      projectId: true,
-      project: { select: { id: true, name: true } },
-      createdAt: true,
-      createdBy: true,
-      _count: { select: { logs: true } },
-    },
+    select: integrationSelect,
   });
 
   return Response.json(integrations);
