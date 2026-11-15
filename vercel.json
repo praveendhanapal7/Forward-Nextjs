@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/cron/sync-meta",
-      "schedule": "*/15 * * * *"
+      "schedule": "0 2 * * *"
     }
   ]
 }
