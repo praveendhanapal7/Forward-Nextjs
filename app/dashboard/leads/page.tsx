@@ -16,6 +16,7 @@ import {
   Trash2,
   X,
   XCircle,
+  FileDown,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { useAuth } from "@/components/auth/AuthContext";
@@ -609,6 +610,58 @@ export default function DashboardPage() {
     void updateStatus(lead.id, "ATTENDED");
   };
 
+  const downloadPDF = async () => {
+    const { jsPDF } = await import("jspdf");
+    const autoTable = (await import("jspdf-autotable")).default;
+
+    const doc = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+
+    const clientLabel = isAgency
+      ? (filteredLeads[0]?.clientName || "All Clients")
+      : (user?.brandName || "Leads");
+    const dateStr = new Date().toLocaleDateString("en-IN");
+    const title = `${clientLabel} — Lead Report`;
+
+    doc.setFontSize(16);
+    doc.text(title, 14, 16);
+    doc.setFontSize(10);
+    doc.setTextColor(100);
+    doc.text(`Generated on ${dateStr}  •  Total: ${filteredLeads.length} leads`, 14, 23);
+    doc.setTextColor(0);
+
+    const columns = [
+      { header: "#", dataKey: "no" },
+      { header: "Phone Number", dataKey: "phone" },
+      { header: "Name / Requirement", dataKey: "req" },
+      { header: "Status", dataKey: "status" },
+      { header: "Entry Date", dataKey: "date" },
+      { header: "Added By", dataKey: "addedBy" },
+      ...(isAgency ? [{ header: "Client", dataKey: "client" }] : []),
+    ];
+
+    const rows = filteredLeads.map((l, i) => ({
+      no: i + 1,
+      phone: l.phoneNumber || "—",
+      req: l.requirements || "—",
+      status: getStatusMeta(l.status || "NEW").label,
+      date: l.enquiryEntry || "—",
+      addedBy: l.addedBy || "—",
+      ...(isAgency ? { client: l.clientName || "—" } : {}),
+    }));
+
+    autoTable(doc, {
+      startY: 28,
+      columns,
+      body: rows,
+      styles: { fontSize: 9, cellPadding: 3 },
+      headStyles: { fillColor: [30, 30, 30], textColor: 255, fontStyle: "bold" },
+      alternateRowStyles: { fillColor: [245, 245, 245] },
+      columnStyles: { 0: { cellWidth: 10 } },
+    });
+
+    doc.save(`${clientLabel.replace(/\s+/g, "_")}_leads_${dateStr.replace(/\//g, "-")}.pdf`);
+  };
+
   const assignVisitingStore = async (lead: Lead) => {
     const visitingStoreDate = visitDateDrafts[lead.id] || lead.visitingStoreDate || "";
     if (!visitingStoreDate) {
@@ -1166,6 +1219,30 @@ export default function DashboardPage() {
                   </button>
                 </div>
               </div>
+              {filteredLeads.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => void downloadPDF()}
+                  title="Download PDF"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 6,
+                    padding: "6px 14px",
+                    background: "#111827",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: 6,
+                    fontSize: 13,
+                    fontWeight: 500,
+                    cursor: "pointer",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  <FileDown size={15} />
+                  Download PDF
+                </button>
+              )}
             </div>
           </div>
 
